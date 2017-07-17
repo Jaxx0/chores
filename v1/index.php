@@ -272,6 +272,44 @@ $app->get('/client/:id', 'authenticate', function($client_id) {
 
 
 /**
+ * Updating an existing client
+ * method PUT
+ * params task, status
+ * url - /tasks/:id
+ */
+$app->put('/clients/:id', 'authenticate', function($client_id) use($app) {
+    // check for required params
+    verifyRequiredParams(array('client_name', 'first_name', 'last_name', 'cell_no', 'location', 'image', 'status'));
+
+//    global $client_id;
+    $client_name = $app->request->put('client_name');
+    $first_name = $app->request->put('first_name');
+    $last_name = $app->request->put('last_name');
+    $cell_no = $app->request->put('cell_no');
+    $location = $app->request->put('location');
+    $image = $app->request->put('image');
+    $status = $app->request->put('status');
+
+    $db = new DbHandler();
+    $response = array();
+
+    // updating task
+    $result = $db->updateClient( $client_name, $first_name, $last_name, $cell_no, $location, $image, $status, $client_id);
+    if ($result) {
+        // task updated successfully
+        $response["error"] = false;
+        $response["message"] = "Task updated successfully";
+    } else {
+        // task failed to update
+        $response["error"] = true;
+        $response["message"] = "Task failed to update. Please try again!";
+    }
+    echoRespnse(200, $response);
+});
+
+
+
+/**
  * Listing single proffesional
  * method GET
  * url /proffesional/:id
@@ -833,4 +871,5 @@ $app->delete('/tasks/:id', 'authenticate', function($task_id) use($app) {
 
 $app->run();
 ?>
+
 

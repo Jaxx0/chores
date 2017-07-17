@@ -437,6 +437,20 @@ class DbHandler {
         }
     }
 
+    /**
+     * Updating clients
+     * @param String $client_id id of the task
+     */
+    public function updateClient( $client_name, $first_name,$last_name, $cell_no, $location, $image, $status, $client_id) {
+        $stmt = $this->conn->prepare("UPDATE clients set client_name = ?, first_name = ?, last_name = ?, cell_no = ?, location = ?, image = ?, status = ? WHERE client_id = ?");
+        $stmt->bind_param("sssssssi", $client_name, $first_name, $last_name, $cell_no, $location, $image, $status, $client_id);
+        $stmt->execute();
+        $num_affected_rows = $stmt->affected_rows;
+        $stmt->close();
+        return $num_affected_rows > 0;
+    }
+
+
 
 
 
@@ -529,4 +543,5 @@ class DbHandler {
 }
 
 ?>
+
 
