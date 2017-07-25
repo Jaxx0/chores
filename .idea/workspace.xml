@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="52aa3bd2-df56-4ab9-8d9f-ec452ed79228" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/Config.php" afterPath="$PROJECT_DIR$/include/Config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/DbHandler.php" afterPath="$PROJECT_DIR$/include/DbHandler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v1/index.php" afterPath="$PROJECT_DIR$/v1/index.php" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/v1/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="146" column="42" lean-forward="true" selection-start-line="146" selection-start-column="42" selection-end-line="146" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DbHandler.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/DbHandler.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="158">
+              <caret line="93" column="31" lean-forward="true" selection-start-line="93" selection-start-column="31" selection-end-line="93" selection-end-column="31" />
+              <folding>
+                <marker date="1500818250358" expanded="true" signature="1093:1192" ph="INSERT INTO clients... " />
+                <marker date="1500818250358" expanded="true" signature="2235:2342" ph="INSERT INTO job_post... " />
+                <marker date="1500818250358" expanded="true" signature="2235:2370" ph="INSERT INTO job_post... " />
+                <marker date="1500818250358" expanded="true" signature="2349:2370" ph="INSERT INTO job_post... " />
+                <marker date="1500818250358" expanded="true" signature="3244:3311" ph="INSERT INTO job_categories... " />
+                <marker date="1500818250358" expanded="true" signature="3960:4037" ph="INSERT INTO job_description... " />
+                <marker date="1500818250358" expanded="true" signature="4768:4878" ph="INSERT INTO job_description... " />
+                <marker date="1500818250358" expanded="true" signature="5678:5720" ph="SELECT passw... clients" />
+                <marker date="1500818250358" expanded="true" signature="6649:6694" ph="SELECT clien... clients" />
+                <marker date="1500818250358" expanded="true" signature="7070:7163" ph="SELECT first... clients" />
+                <marker date="1500818250358" expanded="true" signature="8197:8244" ph="SELECT api_k... clients" />
+                <marker date="1500818250358" expanded="true" signature="8740:8787" ph="SELECT clien... clients" />
+                <marker date="1500818250358" expanded="true" signature="9390:9437" ph="SELECT clien... clients" />
+                <marker date="1500818250358" expanded="true" signature="10096:10129" ph="INSERT INTO tasks... " />
+                <marker date="1500818250358" expanded="true" signature="10940:10986" ph="SELECT * FRO... proffesionals" />
+                <marker date="1500818250358" expanded="true" signature="11379:11420" ph="SELECT * FRO... clients" />
+                <marker date="1500818250358" expanded="true" signature="11809:11851" ph="SELECT * FRO... job_post" />
+                <marker date="1500818250358" expanded="true" signature="12229:12251" ph="SELECT * FRO... job_post" />
+                <marker date="1500818250358" expanded="true" signature="12549:12570" ph="SELECT * FRO... clients" />
+                <marker date="1500818250358" expanded="true" signature="12831:12858" ph="SELECT * FRO... client_rating" />
+                <marker date="1500818250358" expanded="true" signature="13138:13185" ph="SELECT * FRO... client_rating" />
+                <marker date="1500818250358" expanded="true" signature="13606:13661" ph="UPDATE clien... " />
+                <marker date="1500818250358" expanded="true" signature="14059:14101" ph="INSERT INTO payments... " />
+                <marker date="1500818250358" expanded="true" signature="14059:14102" ph="INSERT INTO client_rating... " />
+                <marker date="1500818250358" expanded="true" signature="14629:14653" ph="SELECT * FRO... categories" />
+                <marker date="1500818250358" expanded="true" signature="14915:14943" ph="SELECT * FRO... job_categories" />
+                <marker date="1500818250358" expanded="true" signature="15223:15270" ph="SELECT * FRO... job_categories" />
+                <marker date="1500818250358" expanded="true" signature="15672:15701" ph="SELECT * FRO... job_description" />
+                <marker date="1500818250358" expanded="true" signature="15964:15986" ph="SELECT * FRO... payments" />
+                <marker date="1500818250358" expanded="true" signature="16260:16311" ph="SELECT * FRO... job_description" />
+                <marker date="1500818250358" expanded="true" signature="16727:16768" ph="SELECT * FRO... payments" />
+                <marker date="1500818250358" expanded="true" signature="17169:17211" ph="SELECT * FRO... payments" />
+                <marker date="1500818250358" expanded="true" signature="17715:17850" ph="UPDATE clien... " />
+                <marker date="1500818250358" expanded="true" signature="18448:18601" ph="UPDATE clien... " />
+                <marker date="1500818250358" expanded="true" signature="19202:19354" ph="UPDATE job_p... " />
+                <marker date="1500818250358" expanded="true" signature="19834:19873" ph="DELETE FROM " />
+                <marker date="1500818250358" expanded="true" signature="20259:20309" ph="UPDATE clien... " />
+                <marker date="1500818250358" expanded="true" signature="20724:20764" ph="DELETE FROM " />
+                <marker date="1500818250358" expanded="true" signature="21166:21205" ph="DELETE FROM " />
+                <marker date="1500818250358" expanded="true" signature="21581:21708" ph="SELECT t.id,... tasks" />
+                <marker date="1500818250358" expanded="true" signature="22526:22640" ph="UPDATE tasks... " />
+                <marker date="1500818250358" expanded="true" signature="23654:23707" ph="INSERT INTO user_tasks... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>job</find>
+      <find>updateJob_</find>
+      <find>jobpost</find>
+      <find>getJobpost</find>
+      <find>delete</find>
+      <find>rating</find>
+      <find>client rating</find>
+      <find>job_post</find>
+      <find>CLIENT_RATING</find>
+      <find>update</find>
+      <find>create_payment</find>
+      <find>client_rating</find>
+      <find>create</find>
+      <find>categor</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/include/Config.php" />
+        <option value="$PROJECT_DIR$/v1/index.php" />
+        <option value="$PROJECT_DIR$/include/DbHandler.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="width" value="1600" />
+    <option name="height" value="860" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chores" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chores" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="v1" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chores" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chores" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chores" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chores" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="include" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="CodeceptionConfigurationType" factoryName="Codeception">
+      <PhpTestRunnerSettings />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpSpecConfigurationType" factoryName="PHPSpec">
+      <PhpTestRunnerSettings />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="52aa3bd2-df56-4ab9-8d9f-ec452ed79228" name="Default" comment="" />
+      <created>1500307879687</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1500307879687</updated>
+      <workItem from="1500307880948" duration="6481000" />
+      <workItem from="1500654095610" duration="29019000" />
+      <workItem from="1500808252695" duration="10644000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="46144000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1600" height="860" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0025" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/v1/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2380">
+          <caret line="140" column="33" lean-forward="true" selection-start-line="140" selection-start-column="33" selection-end-line="140" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/DbHandler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1156">
+          <caret line="68" column="27" lean-forward="true" selection-start-line="68" selection-start-column="27" selection-end-line="68" selection-end-column="27" />
+          <folding>
+            <marker date="1500818250358" expanded="true" signature="1093:1192" ph="INSERT INTO clients... " />
+            <marker date="1500818250358" expanded="true" signature="2235:2342" ph="INSERT INTO job_post... " />
+            <marker date="1500818250358" expanded="true" signature="2235:2370" ph="INSERT INTO job_post... " />
+            <marker date="1500818250358" expanded="true" signature="2349:2370" ph="INSERT INTO job_post... " />
+            <marker date="1500818250358" expanded="true" signature="3244:3311" ph="INSERT INTO job_categories... " />
+            <marker date="1500818250358" expanded="true" signature="3960:4037" ph="INSERT INTO job_description... " />
+            <marker date="1500818250358" expanded="true" signature="4768:4878" ph="INSERT INTO job_description... " />
+            <marker date="1500818250358" expanded="true" signature="5678:5720" ph="SELECT passw... clients" />
+            <marker date="1500818250358" expanded="true" signature="6649:6694" ph="SELECT clien... clients" />
+            <marker date="1500818250358" expanded="true" signature="7070:7163" ph="SELECT first... clients" />
+            <marker date="1500818250358" expanded="true" signature="8197:8244" ph="SELECT api_k... clients" />
+            <marker date="1500818250358" expanded="true" signature="8740:8787" ph="SELECT clien... clients" />
+            <marker date="1500818250358" expanded="true" signature="9390:9437" ph="SELECT clien... clients" />
+            <marker date="1500818250358" expanded="true" signature="10096:10129" ph="INSERT INTO tasks... " />
+            <marker date="1500818250358" expanded="true" signature="10940:10986" ph="SELECT * FRO... proffesionals" />
+            <marker date="1500818250358" expanded="true" signature="11379:11420" ph="SELECT * FRO... clients" />
+            <marker date="1500818250358" expanded="true" signature="11809:11851" ph="SELECT * FRO... job_post" />
+            <marker date="1500818250358" expanded="true" signature="12229:12251" ph="SELECT * FRO... job_post" />
+            <marker date="1500818250358" expanded="true" signature="12549:12570" ph="SELECT * FRO... clients" />
+            <marker date="1500818250358" expanded="true" signature="12831:12858" ph="SELECT * FRO... client_rating" />
+            <marker date="1500818250358" expanded="true" signature="13138:13185" ph="SELECT * FRO... client_rating" />
+            <marker date="1500818250358" expanded="true" signature="13606:13661" ph="UPDATE clien... " />
+            <marker date="1500818250358" expanded="true" signature="14059:14101" ph="INSERT INTO payments... " />
+            <marker date="1500818250358" expanded="true" signature="14059:14102" ph="INSERT INTO client_rating... " />
+            <marker date="1500818250358" expanded="true" signature="14629:14653" ph="SELECT * FRO... categories" />
+            <marker date="1500818250358" expanded="true" signature="14915:14943" ph="SELECT * FRO... job_categories" />
+            <marker date="1500818250358" expanded="true" signature="15223:15270" ph="SELECT * FRO... job_categories" />
+            <marker date="1500818250358" expanded="true" signature="15672:15701" ph="SELECT * FRO... job_description" />
+            <marker date="1500818250358" expanded="true" signature="15964:15986" ph="SELECT * FRO... payments" />
+            <marker date="1500818250358" expanded="true" signature="16260:16311" ph="SELECT * FRO... job_description" />
+            <marker date="1500818250358" expanded="true" signature="16727:16768" ph="SELECT * FRO... payments" />
+            <marker date="1500818250358" expanded="true" signature="17169:17211" ph="SELECT * FRO... payments" />
+            <marker date="1500818250358" expanded="true" signature="17715:17850" ph="UPDATE clien... " />
+            <marker date="1500818250358" expanded="true" signature="18448:18601" ph="UPDATE clien... " />
+            <marker date="1500818250358" expanded="true" signature="19202:19354" ph="UPDATE job_p... " />
+            <marker date="1500818250358" expanded="true" signature="19834:19873" ph="DELETE FROM " />
+            <marker date="1500818250358" expanded="true" signature="20259:20309" ph="UPDATE clien... " />
+            <marker date="1500818250358" expanded="true" signature="20724:20764" ph="DELETE FROM " />
+            <marker date="1500818250358" expanded="true" signature="21166:21205" ph="DELETE FROM " />
+            <marker date="1500818250358" expanded="true" signature="21581:21708" ph="SELECT t.id,... tasks" />
+            <marker date="1500818250358" expanded="true" signature="22526:22640" ph="UPDATE tasks... " />
+            <marker date="1500818250358" expanded="true" signature="23654:23707" ph="INSERT INTO user_tasks... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v1/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6120">
+          <caret line="360" column="3" lean-forward="false" selection-start-line="360" selection-start-column="3" selection-end-line="360" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/DbHandler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7752">
+          <caret line="456" column="46" lean-forward="false" selection-start-line="456" selection-start-column="46" selection-end-line="456" selection-end-column="46" />
+          <folding>
+            <marker date="1500818250358" expanded="true" signature="1093:1192" ph="INSERT INTO clients... " />
+            <marker date="1500818250358" expanded="true" signature="2235:2342" ph="INSERT INTO job_post... " />
+            <marker date="1500818250358" expanded="true" signature="2235:2370" ph="INSERT INTO job_post... " />
+            <marker date="1500818250358" expanded="true" signature="2349:2370" ph="INSERT INTO job_post... " />
+            <marker date="1500818250358" expanded="true" signature="3244:3311" ph="INSERT INTO job_categories... " />
+            <marker date="1500818250358" expanded="true" signature="3960:4037" ph="INSERT INTO job_description... " />
+            <marker date="1500818250358" expanded="true" signature="4768:4878" ph="INSERT INTO job_description... " />
+            <marker date="1500818250358" expanded="true" signature="5678:5720" ph="SELECT passw... clients" />
+            <marker date="1500818250358" expanded="true" signature="6649:6694" ph="SELECT clien... clients" />
+            <marker date="1500818250358" expanded="true" signature="7070:7163" ph="SELECT first... clients" />
+            <marker date="1500818250358" expanded="true" signature="8197:8244" ph="SELECT api_k... clients" />
+            <marker date="1500818250358" expanded="true" signature="8740:8787" ph="SELECT clien... clients" />
+            <marker date="1500818250358" expanded="true" signature="9390:9437" ph="SELECT clien... clients" />
+            <marker date="1500818250358" expanded="true" signature="10096:10129" ph="INSERT INTO tasks... " />
+            <marker date="1500818250358" expanded="true" signature="10940:10986" ph="SELECT * FRO... proffesionals" />
+            <marker date="1500818250358" expanded="true" signature="11379:11420" ph="SELECT * FRO... clients" />
+            <marker date="1500818250358" expanded="true" signature="11809:11851" ph="SELECT * FRO... job_post" />
+            <marker date="1500818250358" expanded="true" signature="12229:12251" ph="SELECT * FRO... job_post" />
+            <marker date="1500818250358" expanded="true" signature="12549:12570" ph="SELECT * FRO... clients" />
+            <marker date="1500818250358" expanded="true" signature="12831:12858" ph="SELECT * FRO... client_rating" />
+            <marker date="1500818250358" expanded="true" signature="13138:13185" ph="SELECT * FRO... client_rating" />
+            <marker date="1500818250358" expanded="true" signature="13606:13661" ph="UPDATE clien... " />
+            <marker date="1500818250358" expanded="true" signature="14059:14101" ph="INSERT INTO payments... " />
+            <marker date="1500818250358" expanded="true" signature="14059:14102" ph="INSERT INTO client_rating... " />
+            <marker date="1500818250358" expanded="true" signature="14629:14653" ph="SELECT * FRO... categories" />
+            <marker date="1500818250358" expanded="true" signature="14915:14943" ph="SELECT * FRO... job_categories" />
+            <marker date="1500818250358" expanded="true" signature="15223:15270" ph="SELECT * FRO... job_categories" />
+            <marker date="1500818250358" expanded="true" signature="15672:15701" ph="SELECT * FRO... job_description" />
+            <marker date="1500818250358" expanded="true" signature="15964:15986" ph="SELECT * FRO... payments" />
+            <marker date="1500818250358" expanded="true" signature="16260:16311" ph="SELECT * FRO... job_description" />
+            <marker date="1500818250358" expanded="true" signature="16727:16768" ph="SELECT * FRO... payments" />
+            <marker date="1500818250358" expanded="true" signature="17169:17211" ph="SELECT * FRO... payments" />
+            <marker date="1500818250358" expanded="true" signature="17715:17850" ph="UPDATE clien... " />
+            <marker date="1500818250358" expanded="true" signature="18448:18601" ph="UPDATE clien... " />
+            <marker date="1500818250358" expanded="true" signature="19202:19354" ph="UPDATE job_p... " />
+            <marker date="1500818250358" expanded="true" signature="19834:19873" ph="DELETE FROM " />
+            <marker date="1500818250358" expanded="true" signature="20259:20309" ph="UPDATE clien... " />
+            <marker date="1500818250358" expanded="true" signature="20724:20764" ph="DELETE FROM " />
+            <marker date="1500818250358" expanded="true" signature="21166:21205" ph="DELETE FROM " />
+            <marker date="1500818250358" expanded="true" signature="21581:21708" ph="SELECT t.id,... tasks" />
+            <marker date="1500818250358" expanded="true" signature="22526:22640" ph="UPDATE tasks... " />
+            <marker date="1500818250358" expanded="true" signature="23654:23707" ph="INSERT INTO user_tasks... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v1/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/Config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="34" lean-forward="true" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/DbConnect.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/DbHandler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="93" column="31" lean-forward="true" selection-start-line="93" selection-start-column="31" selection-end-line="93" selection-end-column="31" />
+          <folding>
+            <marker date="1500818250358" expanded="true" signature="1093:1192" ph="INSERT INTO clients... " />
+            <marker date="1500818250358" expanded="true" signature="2235:2342" ph="INSERT INTO job_post... " />
+            <marker date="1500818250358" expanded="true" signature="2235:2370" ph="INSERT INTO job_post... " />
+            <marker date="1500818250358" expanded="true" signature="2349:2370" ph="INSERT INTO job_post... " />
+            <marker date="1500818250358" expanded="true" signature="3244:3311" ph="INSERT INTO job_categories... " />
+            <marker date="1500818250358" expanded="true" signature="3960:4037" ph="INSERT INTO job_description... " />
+            <marker date="1500818250358" expanded="true" signature="4768:4878" ph="INSERT INTO job_description... " />
+            <marker date="1500818250358" expanded="true" signature="5678:5720" ph="SELECT passw... clients" />
+            <marker date="1500818250358" expanded="true" signature="6649:6694" ph="SELECT clien... clients" />
+            <marker date="1500818250358" expanded="true" signature="7070:7163" ph="SELECT first... clients" />
+            <marker date="1500818250358" expanded="true" signature="8197:8244" ph="SELECT api_k... clients" />
+            <marker date="1500818250358" expanded="true" signature="8740:8787" ph="SELECT clien... clients" />
+            <marker date="1500818250358" expanded="true" signature="9390:9437" ph="SELECT clien... clients" />
+            <marker date="1500818250358" expanded="true" signature="10096:10129" ph="INSERT INTO tasks... " />
+            <marker date="1500818250358" expanded="true" signature="10940:10986" ph="SELECT * FRO... proffesionals" />
+            <marker date="1500818250358" expanded="true" signature="11379:11420" ph="SELECT * FRO... clients" />
+            <marker date="1500818250358" expanded="true" signature="11809:11851" ph="SELECT * FRO... job_post" />
+            <marker date="1500818250358" expanded="true" signature="12229:12251" ph="SELECT * FRO... job_post" />
+            <marker date="1500818250358" expanded="true" signature="12549:12570" ph="SELECT * FRO... clients" />
+            <marker date="1500818250358" expanded="true" signature="12831:12858" ph="SELECT * FRO... client_rating" />
+            <marker date="1500818250358" expanded="true" signature="13138:13185" ph="SELECT * FRO... client_rating" />
+            <marker date="1500818250358" expanded="true" signature="13606:13661" ph="UPDATE clien... " />
+            <marker date="1500818250358" expanded="true" signature="14059:14101" ph="INSERT INTO payments... " />
+            <marker date="1500818250358" expanded="true" signature="14059:14102" ph="INSERT INTO client_rating... " />
+            <marker date="1500818250358" expanded="true" signature="14629:14653" ph="SELECT * FRO... categories" />
+            <marker date="1500818250358" expanded="true" signature="14915:14943" ph="SELECT * FRO... job_categories" />
+            <marker date="1500818250358" expanded="true" signature="15223:15270" ph="SELECT * FRO... job_categories" />
+            <marker date="1500818250358" expanded="true" signature="15672:15701" ph="SELECT * FRO... job_description" />
+            <marker date="1500818250358" expanded="true" signature="15964:15986" ph="SELECT * FRO... payments" />
+            <marker date="1500818250358" expanded="true" signature="16260:16311" ph="SELECT * FRO... job_description" />
+            <marker date="1500818250358" expanded="true" signature="16727:16768" ph="SELECT * FRO... payments" />
+            <marker date="1500818250358" expanded="true" signature="17169:17211" ph="SELECT * FRO... payments" />
+            <marker date="1500818250358" expanded="true" signature="17715:17850" ph="UPDATE clien... " />
+            <marker date="1500818250358" expanded="true" signature="18448:18601" ph="UPDATE clien... " />
+            <marker date="1500818250358" expanded="true" signature="19202:19354" ph="UPDATE job_p... " />
+            <marker date="1500818250358" expanded="true" signature="19834:19873" ph="DELETE FROM " />
+            <marker date="1500818250358" expanded="true" signature="20259:20309" ph="UPDATE clien... " />
+            <marker date="1500818250358" expanded="true" signature="20724:20764" ph="DELETE FROM " />
+            <marker date="1500818250358" expanded="true" signature="21166:21205" ph="DELETE FROM " />
+            <marker date="1500818250358" expanded="true" signature="21581:21708" ph="SELECT t.id,... tasks" />
+            <marker date="1500818250358" expanded="true" signature="22526:22640" ph="UPDATE tasks... " />
+            <marker date="1500818250358" expanded="true" signature="23654:23707" ph="INSERT INTO user_tasks... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v1/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="146" column="42" lean-forward="true" selection-start-line="146" selection-start-column="42" selection-end-line="146" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

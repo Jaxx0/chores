@@ -57,6 +57,109 @@ class DbHandler {
     }
 
     /**
+     * Creating new job post
+     */
+    public function createJob_post($location, $apartment_name, $house_no, $contact_cell_no, $job_date, $job_time, $job_category) {
+        require_once 'PassHash.php';
+        $response = array();
+
+        // First check if user already exists in the db
+        if (!$this->isClientExists($contact_cell_no)) {
+
+            // insert query
+            $stmt = $this->conn->prepare("INSERT INTO job_post(location, apartment_name, house_no, contact_cell_no, job_date, job_time, job_category) VALUES(?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssiisss", $location, $apartment_name, $house_no, $contact_cell_no, $job_date, $job_time, $job_category );
+            $result = $stmt->execute();
+            $stmt->close();
+
+
+            // Check for successful insertion
+            if ($result) {
+                // User successfully inserted
+                return USER_CREATED_SUCCESSFULLY;
+            } else {
+                // Failed to create user
+                return USER_CREATE_FAILED;
+            }
+        } else {
+            // User with same email already existed in the db
+            return USER_ALREADY_EXISTED;
+        }
+        return $response;
+    }
+
+    /**
+     * Creating new job category
+     */
+    public function createJob_category($job_type, $description_text) {
+        $response = array();
+
+        // insert query
+        $stmt = $this->conn->prepare("INSERT INTO job_categories(job_type, description_text) values(?, ?)");
+        $stmt->bind_param("ss", $job_type, $description_text);
+        $result = $stmt->execute();
+        $stmt->close();
+
+        // Check for successful insertion
+        if ($result) {
+            // job_post successfully inserted
+            return USER_CREATED_SUCCESSFULLY;
+        } else {
+            // Failed to create job_post
+            return USER_CREATE_FAILED;
+        }
+
+        return $response;
+    }
+    /**
+     * Creating new job post
+     */
+    public function createJob_description($text, $quantity, $image, $amount) {
+        $response = array();
+
+            // insert query
+            $stmt = $this->conn->prepare("INSERT INTO job_description(text, quantity, image, amount) values(?, ?, ?, ?)");
+            $stmt->bind_param("ssss", $text, $quantity, $image, $amount );
+            $result = $stmt->execute();
+            $stmt->close();
+
+            // Check for successful insertion
+            if ($result) {
+                // job_post successfully inserted
+                return USER_CREATED_SUCCESSFULLY;
+            } else {
+                // Failed to create job_post
+                return USER_CREATE_FAILED;
+            }
+
+        return $response;
+    }
+
+    /**
+     * Creating a payment record
+     */
+    public function create_payment($transaction_reference, $payment_time, $payment_date, $job_description_id) {
+        $response = array();
+
+        // insert query
+        $stmt = $this->conn->prepare("INSERT INTO payments(transaction_reference, payment_time, payment_date, job_description_id) values(?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $transaction_reference, $payment_time, $payment_date, $job_description_id );
+        $result = $stmt->execute();
+        $stmt->close();
+
+        // Check for successful insertion
+        if ($result) {
+            // payment successfully inserted
+            return USER_CREATED_SUCCESSFULLY;
+        } else {
+            // Failed to create payment
+            return USER_CREATE_FAILED;
+        }
+
+        return $response;
+    }
+
+    /**
      * Checking Client login
      * @param String $email Client login email id
      * @param String $passwd Client login password
@@ -331,6 +434,42 @@ class DbHandler {
     }
 
     /**
+     * Updating single client Rating
+     */
+    public function updateClient_rating($rating, $client_id) {
+        $stmt = $this->conn->prepare("UPDATE client_rating set rating = ? WHERE client_id = ?");
+        $stmt->bind_param("si", $rating, $client_id);
+        $stmt->execute();
+        $num_affected_rows = $stmt->affected_rows;
+        $stmt->close();
+        return $num_affected_rows > 0;
+    }
+
+    /**
+     * Creating a payment record
+     */
+    public function create_Client_rating($rating) {
+        $response = array();
+
+        // insert query
+        $stmt = $this->conn->prepare("INSERT INTO client_rating(rating) values(?)");
+        $stmt->bind_param("s", $rating );
+        $result = $stmt->execute();
+        $stmt->close();
+
+        // Check for successful insertion
+        if ($result) {
+            // rating successfully inserted
+            return USER_CREATED_SUCCESSFULLY;
+        } else {
+            // Failed to create rating
+            return USER_CREATE_FAILED;
+        }
+
+        return $response;
+    }
+
+    /**
      * Fetching all categories
      */
     public function getAllCategories() {
@@ -449,6 +588,157 @@ class DbHandler {
         $stmt->close();
         return $num_affected_rows > 0;
     }
+
+    /**
+     * Updating a job post using client_id
+     * @param String $client_id id of the task
+     */
+    public function updateJob_PostClient( $location, $apartment_name, $house_no, $contact_cell_no, $job_date, $job_time, $job_category, $proff_id, $client_id, $job_post_id) {
+        $stmt = $this->conn->prepare("UPDATE job_post set location = ?, apartment_name = ?, house_no = ?, contact_cell_no = ?, job_date = ?, job_time = ?, job_category = ? WHERE client_id = ?");
+        $stmt->bind_param("sssssssi", $location, $apartment_name, $house_no, $contact_cell_no, $job_date, $job_time, $job_category, $client_id);
+        $stmt->execute();
+        $num_affected_rows = $stmt->affected_rows;
+        $stmt->close();
+        return $num_affected_rows > 0;
+    }
+
+    /**
+     * Updating a job post using proff_id
+     * @param String $client_id id of the task
+     */
+    public function updateJob_PostProff($location, $apartment_name, $house_no, $contact_cell_no, $job_date, $job_time, $job_category, $proff_id,  $job_post_id) {
+        $stmt = $this->conn->prepare("UPDATE job_post set location = ?, apartment_name = ?, house_no = ?, contact_cell_no = ?, job_date = ?, job_time = ?, job_category = ? WHERE proff_id = ?");
+        $stmt->bind_param("sssssssi", $location, $apartment_name, $house_no, $contact_cell_no, $job_date, $job_time, $job_category, $proff_id);
+        $stmt->execute();
+        $num_affected_rows = $stmt->affected_rows;
+        $stmt->close();
+        return $num_affected_rows > 0;
+    }
+
+    /**
+     * Deleting a client
+     * @param String $client-id id of the client to delete
+     */
+    public function deleteClient($client_id) {
+        $stmt = $this->conn->prepare("DELETE FROM clients WHERE client_id = ?");
+        $stmt->bind_param("i", $client_id);
+        $stmt->execute();
+        $num_affected_rows = $stmt->affected_rows;
+        $stmt->close();
+        return $num_affected_rows > 0;
+    }
+
+
+    /**
+     * Deactivate a client
+     * @param String $client_id id of the client
+     */
+    public function DeactivateClient($status, $client_id) {
+        $stmt = $this->conn->prepare("UPDATE clients set status = ?  WHERE client_id = ?");
+        $stmt->bind_param("ii", $status, $client_id);
+        $stmt->execute();
+        $num_affected_rows = $stmt->affected_rows;
+        $stmt->close();
+        return $num_affected_rows > 0;
+    }
+
+    /**
+     * Deleting a job_post per client
+     * @param String $client-id id of the job_post to delete
+     */
+    public function delete_job_post_Client($client_id) {
+        $stmt = $this->conn->prepare("DELETE FROM job_post WHERE client_id = ?");
+        $stmt->bind_param("i", $client_id);
+        $stmt->execute();
+        $num_affected_rows = $stmt->affected_rows;
+        $stmt->close();
+        return $num_affected_rows > 0;
+    }
+
+
+    /**
+     * Deleting a job_post per proff
+     * @param String $proff_id id of the job_post to delete
+     */
+    public function delete_job_post_Proff($proff_id) {
+        $stmt = $this->conn->prepare("DELETE FROM job_post WHERE proff_id = ?");
+        $stmt->bind_param("i", $proff_id);
+        $stmt->execute();
+        $num_affected_rows = $stmt->affected_rows;
+        $stmt->close();
+        return $num_affected_rows > 0;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
