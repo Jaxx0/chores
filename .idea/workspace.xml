@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52aa3bd2-df56-4ab9-8d9f-ec452ed79228" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/Config.php" afterPath="$PROJECT_DIR$/include/Config.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/zika.mwb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/chores.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/DbHandler.php" afterPath="$PROJECT_DIR$/include/DbHandler.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v1/index.php" afterPath="$PROJECT_DIR$/v1/index.php" />
     </list>
@@ -13,67 +15,82 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v1/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="146" column="42" lean-forward="true" selection-start-line="146" selection-start-column="42" selection-end-line="146" selection-end-column="42" />
+            <state relative-caret-position="227">
+              <caret line="1245" column="36" lean-forward="false" selection-start-line="1245" selection-start-column="18" selection-end-line="1245" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DbHandler.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DbHandler.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/include/DbHandler.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="93" column="31" lean-forward="true" selection-start-line="93" selection-start-column="31" selection-end-line="93" selection-end-column="31" />
+            <state relative-caret-position="252">
+              <caret line="14" column="37" lean-forward="true" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
               <folding>
-                <marker date="1500818250358" expanded="true" signature="1093:1192" ph="INSERT INTO clients... " />
-                <marker date="1500818250358" expanded="true" signature="2235:2342" ph="INSERT INTO job_post... " />
-                <marker date="1500818250358" expanded="true" signature="2235:2370" ph="INSERT INTO job_post... " />
-                <marker date="1500818250358" expanded="true" signature="2349:2370" ph="INSERT INTO job_post... " />
-                <marker date="1500818250358" expanded="true" signature="3244:3311" ph="INSERT INTO job_categories... " />
-                <marker date="1500818250358" expanded="true" signature="3960:4037" ph="INSERT INTO job_description... " />
-                <marker date="1500818250358" expanded="true" signature="4768:4878" ph="INSERT INTO job_description... " />
-                <marker date="1500818250358" expanded="true" signature="5678:5720" ph="SELECT passw... clients" />
-                <marker date="1500818250358" expanded="true" signature="6649:6694" ph="SELECT clien... clients" />
-                <marker date="1500818250358" expanded="true" signature="7070:7163" ph="SELECT first... clients" />
-                <marker date="1500818250358" expanded="true" signature="8197:8244" ph="SELECT api_k... clients" />
-                <marker date="1500818250358" expanded="true" signature="8740:8787" ph="SELECT clien... clients" />
-                <marker date="1500818250358" expanded="true" signature="9390:9437" ph="SELECT clien... clients" />
-                <marker date="1500818250358" expanded="true" signature="10096:10129" ph="INSERT INTO tasks... " />
-                <marker date="1500818250358" expanded="true" signature="10940:10986" ph="SELECT * FRO... proffesionals" />
-                <marker date="1500818250358" expanded="true" signature="11379:11420" ph="SELECT * FRO... clients" />
-                <marker date="1500818250358" expanded="true" signature="11809:11851" ph="SELECT * FRO... job_post" />
-                <marker date="1500818250358" expanded="true" signature="12229:12251" ph="SELECT * FRO... job_post" />
-                <marker date="1500818250358" expanded="true" signature="12549:12570" ph="SELECT * FRO... clients" />
-                <marker date="1500818250358" expanded="true" signature="12831:12858" ph="SELECT * FRO... client_rating" />
-                <marker date="1500818250358" expanded="true" signature="13138:13185" ph="SELECT * FRO... client_rating" />
-                <marker date="1500818250358" expanded="true" signature="13606:13661" ph="UPDATE clien... " />
-                <marker date="1500818250358" expanded="true" signature="14059:14101" ph="INSERT INTO payments... " />
-                <marker date="1500818250358" expanded="true" signature="14059:14102" ph="INSERT INTO client_rating... " />
-                <marker date="1500818250358" expanded="true" signature="14629:14653" ph="SELECT * FRO... categories" />
-                <marker date="1500818250358" expanded="true" signature="14915:14943" ph="SELECT * FRO... job_categories" />
-                <marker date="1500818250358" expanded="true" signature="15223:15270" ph="SELECT * FRO... job_categories" />
-                <marker date="1500818250358" expanded="true" signature="15672:15701" ph="SELECT * FRO... job_description" />
-                <marker date="1500818250358" expanded="true" signature="15964:15986" ph="SELECT * FRO... payments" />
-                <marker date="1500818250358" expanded="true" signature="16260:16311" ph="SELECT * FRO... job_description" />
-                <marker date="1500818250358" expanded="true" signature="16727:16768" ph="SELECT * FRO... payments" />
-                <marker date="1500818250358" expanded="true" signature="17169:17211" ph="SELECT * FRO... payments" />
-                <marker date="1500818250358" expanded="true" signature="17715:17850" ph="UPDATE clien... " />
-                <marker date="1500818250358" expanded="true" signature="18448:18601" ph="UPDATE clien... " />
-                <marker date="1500818250358" expanded="true" signature="19202:19354" ph="UPDATE job_p... " />
-                <marker date="1500818250358" expanded="true" signature="19834:19873" ph="DELETE FROM " />
-                <marker date="1500818250358" expanded="true" signature="20259:20309" ph="UPDATE clien... " />
-                <marker date="1500818250358" expanded="true" signature="20724:20764" ph="DELETE FROM " />
-                <marker date="1500818250358" expanded="true" signature="21166:21205" ph="DELETE FROM " />
-                <marker date="1500818250358" expanded="true" signature="21581:21708" ph="SELECT t.id,... tasks" />
-                <marker date="1500818250358" expanded="true" signature="22526:22640" ph="UPDATE tasks... " />
-                <marker date="1500818250358" expanded="true" signature="23654:23707" ph="INSERT INTO user_tasks... " />
+                <marker date="1503194612639" expanded="true" signature="1093:1192" ph="INSERT INTO clients... " />
+                <marker date="1503194612639" expanded="true" signature="2235:2370" ph="INSERT INTO job_post... " />
+                <marker date="1503194612639" expanded="true" signature="3244:3311" ph="INSERT INTO job_categories... " />
+                <marker date="1503194612639" expanded="true" signature="3960:4037" ph="INSERT INTO job_description... " />
+                <marker date="1503194612639" expanded="true" signature="4768:4878" ph="INSERT INTO payments... " />
+                <marker date="1503194612639" expanded="true" signature="5678:5720" ph="SELECT passw... clients" />
+                <marker date="1503194612639" expanded="true" signature="6649:6694" ph="SELECT clien... clients" />
+                <marker date="1503194612639" expanded="true" signature="7070:7163" ph="SELECT first... clients" />
+                <marker date="1503194612639" expanded="true" signature="8197:8244" ph="SELECT api_k... clients" />
+                <marker date="1503194612639" expanded="true" signature="8741:8788" ph="SELECT clien... clients" />
+                <marker date="1503194612639" expanded="true" signature="9298:9345" ph="SELECT clien... clients" />
+                <marker date="1503194612639" expanded="true" signature="10019:10052" ph="INSERT INTO tasks... " />
+                <marker date="1503194612639" expanded="true" signature="10856:10902" ph="SELECT * FRO... proffesionals" />
+                <marker date="1503194612639" expanded="true" signature="11317:11358" ph="SELECT * FRO... clients" />
+                <marker date="1503194612639" expanded="true" signature="11747:11789" ph="SELECT * FRO... job_post" />
+                <marker date="1503194612639" expanded="true" signature="12167:12189" ph="SELECT * FRO... job_post" />
+                <marker date="1503194612639" expanded="true" signature="12487:12508" ph="SELECT * FRO... clients" />
+                <marker date="1503194612639" expanded="true" signature="12769:12796" ph="SELECT * FRO... client_rating" />
+                <marker date="1503194612639" expanded="true" signature="13076:13123" ph="SELECT * FRO... client_rating" />
+                <marker date="1503194612639" expanded="true" signature="13544:13599" ph="UPDATE clien... " />
+                <marker date="1503194612639" expanded="true" signature="13997:14040" ph="INSERT INTO client_rating... " />
+                <marker date="1503194612639" expanded="true" signature="14567:14591" ph="SELECT * FRO... categories" />
+                <marker date="1503194612639" expanded="true" signature="14853:14881" ph="SELECT * FRO... job_categories" />
+                <marker date="1503194612639" expanded="true" signature="15161:15208" ph="SELECT * FRO... job_categories" />
+                <marker date="1503194612639" expanded="true" signature="15610:15639" ph="SELECT * FRO... job_description" />
+                <marker date="1503194612639" expanded="true" signature="15902:15924" ph="SELECT * FRO... payments" />
+                <marker date="1503194612639" expanded="true" signature="16198:16249" ph="SELECT * FRO... job_description" />
+                <marker date="1503194612639" expanded="true" signature="16665:16706" ph="SELECT * FRO... payments" />
+                <marker date="1503194612639" expanded="true" signature="17107:17149" ph="SELECT * FRO... payments" />
+                <marker date="1503194612639" expanded="true" signature="17653:17788" ph="UPDATE clien... " />
+                <marker date="1503194612639" expanded="true" signature="18386:18539" ph="UPDATE job_p... " />
+                <marker date="1503194612639" expanded="true" signature="19140:19292" ph="UPDATE job_p... " />
+                <marker date="1503194612639" expanded="true" signature="19772:19811" ph="DELETE FROM " />
+                <marker date="1503194612639" expanded="true" signature="20197:20247" ph="UPDATE clien... " />
+                <marker date="1503194612639" expanded="true" signature="20662:20702" ph="DELETE FROM " />
+                <marker date="1503194612639" expanded="true" signature="21104:21143" ph="DELETE FROM " />
+                <marker date="1503194612639" expanded="true" signature="22149:22254" ph="INSERT INTO proffesionals... " />
+                <marker date="1503194612639" expanded="true" signature="23203:23251" ph="SELECT passw... proffesionals" />
+                <marker date="1503194612639" expanded="true" signature="24391:24458" ph="UPDATE proff... " />
+                <marker date="1503194612639" expanded="true" signature="25082:25132" ph="SELECT proff... proffesionals" />
+                <marker date="1503194612639" expanded="true" signature="25518:25707" ph="SELECT proff... proffesionals" />
+                <marker date="1503194612639" expanded="true" signature="26193:26245" ph="SELECT api_k... proffesionals" />
+                <marker date="1503194612639" expanded="true" signature="26690:26742" ph="SELECT proff... proffesionals" />
+                <marker date="1503194612639" expanded="true" signature="27271:27323" ph="SELECT proff... proffesionals" />
+                <marker date="1503194612639" expanded="true" signature="27954:28000" ph="SELECT * FRO... proffesionals" />
+                <marker date="1503194612639" expanded="true" signature="28446:28473" ph="SELECT * FRO... proffesionals" />
+                <marker date="1503194612639" expanded="true" signature="29145:29301" ph="UPDATE proff... " />
+                <marker date="1503194612639" expanded="true" signature="29849:29903" ph="UPDATE proff... " />
+                <marker date="1503194612639" expanded="true" signature="30389:30456" ph="UPDATE proff... " />
+                <marker date="1503194612639" expanded="true" signature="31219:31263" ph="DELETE FROM " />
+                <marker date="1503194612639" expanded="true" signature="31885:31936" ph="INSERT INTO proffesional_status... " />
+                <marker date="1503194612639" expanded="true" signature="32617:32676" ph="SELECT proff... proffesional_status" />
+                <marker date="1503194612639" expanded="true" signature="33148:33212" ph="UPDATE proff... " />
+                <marker date="1503194612639" expanded="true" signature="34039:34104" ph="UPDATE proff... " />
+                <marker date="1503194612639" expanded="true" signature="34931:34996" ph="UPDATE proff... " />
+                <marker date="1503194612639" expanded="true" signature="35802:35877" ph="INSERT INTO proffessional_rating... " />
+                <marker date="1503194612639" expanded="true" signature="36500:36553" ph="SELECT * FRO... proffessional_rating" />
+                <marker date="1503194612639" expanded="true" signature="37014:37066" ph="SELECT * FRO... proffesional_status" />
               </folding>
             </state>
           </provider>
@@ -97,6 +114,13 @@
       <find>client_rating</find>
       <find>create</find>
       <find>categor</find>
+      <find>checkLogin</find>
+      <find>getApiKeyById</find>
+      <find>generateApiKey</find>
+      <find>getUserId</find>
+      <find>authenticated</find>
+      <find>isValidApiKey</find>
+      <find>getProffesional</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -118,9 +142,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds">
-    <option name="width" value="1600" />
-    <option name="height" value="860" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="27" />
+    <option name="width" value="1366" />
+    <option name="height" value="741" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -137,49 +162,23 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chores" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chores" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v1" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chores" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chores" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chores" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chores" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="include" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
+          <expand>
+            <path>
+              <item name="chores" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chores" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="chores" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chores" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -187,6 +186,11 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -201,6 +205,14 @@
     </option>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+    </configuration>
     <configuration default="true" type="CodeceptionConfigurationType" factoryName="Codeception">
       <PhpTestRunnerSettings />
       <method />
@@ -239,15 +251,6 @@
       <PhpTestRunnerSettings />
       <method />
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
       <command value="run" />
       <scripts />
@@ -282,17 +285,18 @@
       <workItem from="1500307880948" duration="6481000" />
       <workItem from="1500654095610" duration="29019000" />
       <workItem from="1500808252695" duration="10644000" />
+      <workItem from="1503192007529" duration="2634000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46144000" />
+    <option name="totallyTimeSpent" value="48778000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1600" height="860" extended-state="6" />
+    <frame x="0" y="27" width="1366" height="741" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0025" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19271624" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -312,7 +316,7 @@
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="processedProjectFiles" value="true" />
+    <option name="version" value="1" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -322,6 +326,81 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/v1/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/DbHandler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1674">
+          <caret line="93" column="31" lean-forward="true" selection-start-line="93" selection-start-column="31" selection-end-line="93" selection-end-column="31" />
+          <folding>
+            <marker date="1503194612639" expanded="true" signature="1093:1192" ph="INSERT INTO clients... " />
+            <marker date="1503194612639" expanded="true" signature="2235:2370" ph="INSERT INTO job_post... " />
+            <marker date="1503194612639" expanded="true" signature="3244:3311" ph="INSERT INTO job_categories... " />
+            <marker date="1503194612639" expanded="true" signature="3960:4037" ph="INSERT INTO job_description... " />
+            <marker date="1503194612639" expanded="true" signature="4768:4878" ph="INSERT INTO payments... " />
+            <marker date="1503194612639" expanded="true" signature="5678:5720" ph="SELECT passw... clients" />
+            <marker date="1503194612639" expanded="true" signature="6649:6694" ph="SELECT clien... clients" />
+            <marker date="1503194612639" expanded="true" signature="7070:7163" ph="SELECT first... clients" />
+            <marker date="1503194612639" expanded="true" signature="8197:8244" ph="SELECT api_k... clients" />
+            <marker date="1503194612639" expanded="true" signature="8741:8788" ph="SELECT clien... clients" />
+            <marker date="1503194612639" expanded="true" signature="9298:9345" ph="SELECT clien... clients" />
+            <marker date="1503194612639" expanded="true" signature="10019:10052" ph="INSERT INTO tasks... " />
+            <marker date="1503194612639" expanded="true" signature="10856:10902" ph="SELECT * FRO... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="11317:11358" ph="SELECT * FRO... clients" />
+            <marker date="1503194612639" expanded="true" signature="11747:11789" ph="SELECT * FRO... job_post" />
+            <marker date="1503194612639" expanded="true" signature="12167:12189" ph="SELECT * FRO... job_post" />
+            <marker date="1503194612639" expanded="true" signature="12487:12508" ph="SELECT * FRO... clients" />
+            <marker date="1503194612639" expanded="true" signature="12769:12796" ph="SELECT * FRO... client_rating" />
+            <marker date="1503194612639" expanded="true" signature="13076:13123" ph="SELECT * FRO... client_rating" />
+            <marker date="1503194612639" expanded="true" signature="13544:13599" ph="UPDATE clien... " />
+            <marker date="1503194612639" expanded="true" signature="13997:14040" ph="INSERT INTO client_rating... " />
+            <marker date="1503194612639" expanded="true" signature="14567:14591" ph="SELECT * FRO... categories" />
+            <marker date="1503194612639" expanded="true" signature="14853:14881" ph="SELECT * FRO... job_categories" />
+            <marker date="1503194612639" expanded="true" signature="15161:15208" ph="SELECT * FRO... job_categories" />
+            <marker date="1503194612639" expanded="true" signature="15610:15639" ph="SELECT * FRO... job_description" />
+            <marker date="1503194612639" expanded="true" signature="15902:15924" ph="SELECT * FRO... payments" />
+            <marker date="1503194612639" expanded="true" signature="16198:16249" ph="SELECT * FRO... job_description" />
+            <marker date="1503194612639" expanded="true" signature="16665:16706" ph="SELECT * FRO... payments" />
+            <marker date="1503194612639" expanded="true" signature="17107:17149" ph="SELECT * FRO... payments" />
+            <marker date="1503194612639" expanded="true" signature="17653:17788" ph="UPDATE clien... " />
+            <marker date="1503194612639" expanded="true" signature="18386:18539" ph="UPDATE job_p... " />
+            <marker date="1503194612639" expanded="true" signature="19140:19292" ph="UPDATE job_p... " />
+            <marker date="1503194612639" expanded="true" signature="19772:19811" ph="DELETE FROM " />
+            <marker date="1503194612639" expanded="true" signature="20197:20247" ph="UPDATE clien... " />
+            <marker date="1503194612639" expanded="true" signature="20662:20702" ph="DELETE FROM " />
+            <marker date="1503194612639" expanded="true" signature="21104:21143" ph="DELETE FROM " />
+            <marker date="1503194612639" expanded="true" signature="22149:22254" ph="INSERT INTO proffesionals... " />
+            <marker date="1503194612639" expanded="true" signature="23203:23251" ph="SELECT passw... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="24391:24458" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="25082:25132" ph="SELECT proff... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="25518:25707" ph="SELECT proff... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="26193:26245" ph="SELECT api_k... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="26690:26742" ph="SELECT proff... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="27271:27323" ph="SELECT proff... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="27954:28000" ph="SELECT * FRO... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="28446:28473" ph="SELECT * FRO... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="29145:29301" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="29849:29903" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="30389:30456" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="31219:31263" ph="DELETE FROM " />
+            <marker date="1503194612639" expanded="true" signature="31885:31936" ph="INSERT INTO proffesional_status... " />
+            <marker date="1503194612639" expanded="true" signature="32617:32676" ph="SELECT proff... proffesional_status" />
+            <marker date="1503194612639" expanded="true" signature="33148:33212" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="34039:34104" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="34931:34996" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="35802:35877" ph="INSERT INTO proffessional_rating... " />
+            <marker date="1503194612639" expanded="true" signature="36500:36553" ph="SELECT * FRO... proffessional_rating" />
+            <marker date="1503194612639" expanded="true" signature="37014:37066" ph="SELECT * FRO... proffesional_status" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/v1/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2380">
@@ -335,48 +414,64 @@
         <state relative-caret-position="1156">
           <caret line="68" column="27" lean-forward="true" selection-start-line="68" selection-start-column="27" selection-end-line="68" selection-end-column="27" />
           <folding>
-            <marker date="1500818250358" expanded="true" signature="1093:1192" ph="INSERT INTO clients... " />
-            <marker date="1500818250358" expanded="true" signature="2235:2342" ph="INSERT INTO job_post... " />
-            <marker date="1500818250358" expanded="true" signature="2235:2370" ph="INSERT INTO job_post... " />
-            <marker date="1500818250358" expanded="true" signature="2349:2370" ph="INSERT INTO job_post... " />
-            <marker date="1500818250358" expanded="true" signature="3244:3311" ph="INSERT INTO job_categories... " />
-            <marker date="1500818250358" expanded="true" signature="3960:4037" ph="INSERT INTO job_description... " />
-            <marker date="1500818250358" expanded="true" signature="4768:4878" ph="INSERT INTO job_description... " />
-            <marker date="1500818250358" expanded="true" signature="5678:5720" ph="SELECT passw... clients" />
-            <marker date="1500818250358" expanded="true" signature="6649:6694" ph="SELECT clien... clients" />
-            <marker date="1500818250358" expanded="true" signature="7070:7163" ph="SELECT first... clients" />
-            <marker date="1500818250358" expanded="true" signature="8197:8244" ph="SELECT api_k... clients" />
-            <marker date="1500818250358" expanded="true" signature="8740:8787" ph="SELECT clien... clients" />
-            <marker date="1500818250358" expanded="true" signature="9390:9437" ph="SELECT clien... clients" />
-            <marker date="1500818250358" expanded="true" signature="10096:10129" ph="INSERT INTO tasks... " />
-            <marker date="1500818250358" expanded="true" signature="10940:10986" ph="SELECT * FRO... proffesionals" />
-            <marker date="1500818250358" expanded="true" signature="11379:11420" ph="SELECT * FRO... clients" />
-            <marker date="1500818250358" expanded="true" signature="11809:11851" ph="SELECT * FRO... job_post" />
-            <marker date="1500818250358" expanded="true" signature="12229:12251" ph="SELECT * FRO... job_post" />
-            <marker date="1500818250358" expanded="true" signature="12549:12570" ph="SELECT * FRO... clients" />
-            <marker date="1500818250358" expanded="true" signature="12831:12858" ph="SELECT * FRO... client_rating" />
-            <marker date="1500818250358" expanded="true" signature="13138:13185" ph="SELECT * FRO... client_rating" />
-            <marker date="1500818250358" expanded="true" signature="13606:13661" ph="UPDATE clien... " />
-            <marker date="1500818250358" expanded="true" signature="14059:14101" ph="INSERT INTO payments... " />
-            <marker date="1500818250358" expanded="true" signature="14059:14102" ph="INSERT INTO client_rating... " />
-            <marker date="1500818250358" expanded="true" signature="14629:14653" ph="SELECT * FRO... categories" />
-            <marker date="1500818250358" expanded="true" signature="14915:14943" ph="SELECT * FRO... job_categories" />
-            <marker date="1500818250358" expanded="true" signature="15223:15270" ph="SELECT * FRO... job_categories" />
-            <marker date="1500818250358" expanded="true" signature="15672:15701" ph="SELECT * FRO... job_description" />
-            <marker date="1500818250358" expanded="true" signature="15964:15986" ph="SELECT * FRO... payments" />
-            <marker date="1500818250358" expanded="true" signature="16260:16311" ph="SELECT * FRO... job_description" />
-            <marker date="1500818250358" expanded="true" signature="16727:16768" ph="SELECT * FRO... payments" />
-            <marker date="1500818250358" expanded="true" signature="17169:17211" ph="SELECT * FRO... payments" />
-            <marker date="1500818250358" expanded="true" signature="17715:17850" ph="UPDATE clien... " />
-            <marker date="1500818250358" expanded="true" signature="18448:18601" ph="UPDATE clien... " />
-            <marker date="1500818250358" expanded="true" signature="19202:19354" ph="UPDATE job_p... " />
-            <marker date="1500818250358" expanded="true" signature="19834:19873" ph="DELETE FROM " />
-            <marker date="1500818250358" expanded="true" signature="20259:20309" ph="UPDATE clien... " />
-            <marker date="1500818250358" expanded="true" signature="20724:20764" ph="DELETE FROM " />
-            <marker date="1500818250358" expanded="true" signature="21166:21205" ph="DELETE FROM " />
-            <marker date="1500818250358" expanded="true" signature="21581:21708" ph="SELECT t.id,... tasks" />
-            <marker date="1500818250358" expanded="true" signature="22526:22640" ph="UPDATE tasks... " />
-            <marker date="1500818250358" expanded="true" signature="23654:23707" ph="INSERT INTO user_tasks... " />
+            <marker date="1503194612639" expanded="true" signature="1093:1192" ph="INSERT INTO clients... " />
+            <marker date="1503194612639" expanded="true" signature="2235:2370" ph="INSERT INTO job_post... " />
+            <marker date="1503194612639" expanded="true" signature="3244:3311" ph="INSERT INTO job_categories... " />
+            <marker date="1503194612639" expanded="true" signature="3960:4037" ph="INSERT INTO job_description... " />
+            <marker date="1503194612639" expanded="true" signature="4768:4878" ph="INSERT INTO payments... " />
+            <marker date="1503194612639" expanded="true" signature="5678:5720" ph="SELECT passw... clients" />
+            <marker date="1503194612639" expanded="true" signature="6649:6694" ph="SELECT clien... clients" />
+            <marker date="1503194612639" expanded="true" signature="7070:7163" ph="SELECT first... clients" />
+            <marker date="1503194612639" expanded="true" signature="8197:8244" ph="SELECT api_k... clients" />
+            <marker date="1503194612639" expanded="true" signature="8741:8788" ph="SELECT clien... clients" />
+            <marker date="1503194612639" expanded="true" signature="9298:9345" ph="SELECT clien... clients" />
+            <marker date="1503194612639" expanded="true" signature="10019:10052" ph="INSERT INTO tasks... " />
+            <marker date="1503194612639" expanded="true" signature="10856:10902" ph="SELECT * FRO... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="11317:11358" ph="SELECT * FRO... clients" />
+            <marker date="1503194612639" expanded="true" signature="11747:11789" ph="SELECT * FRO... job_post" />
+            <marker date="1503194612639" expanded="true" signature="12167:12189" ph="SELECT * FRO... job_post" />
+            <marker date="1503194612639" expanded="true" signature="12487:12508" ph="SELECT * FRO... clients" />
+            <marker date="1503194612639" expanded="true" signature="12769:12796" ph="SELECT * FRO... client_rating" />
+            <marker date="1503194612639" expanded="true" signature="13076:13123" ph="SELECT * FRO... client_rating" />
+            <marker date="1503194612639" expanded="true" signature="13544:13599" ph="UPDATE clien... " />
+            <marker date="1503194612639" expanded="true" signature="13997:14040" ph="INSERT INTO client_rating... " />
+            <marker date="1503194612639" expanded="true" signature="14567:14591" ph="SELECT * FRO... categories" />
+            <marker date="1503194612639" expanded="true" signature="14853:14881" ph="SELECT * FRO... job_categories" />
+            <marker date="1503194612639" expanded="true" signature="15161:15208" ph="SELECT * FRO... job_categories" />
+            <marker date="1503194612639" expanded="true" signature="15610:15639" ph="SELECT * FRO... job_description" />
+            <marker date="1503194612639" expanded="true" signature="15902:15924" ph="SELECT * FRO... payments" />
+            <marker date="1503194612639" expanded="true" signature="16198:16249" ph="SELECT * FRO... job_description" />
+            <marker date="1503194612639" expanded="true" signature="16665:16706" ph="SELECT * FRO... payments" />
+            <marker date="1503194612639" expanded="true" signature="17107:17149" ph="SELECT * FRO... payments" />
+            <marker date="1503194612639" expanded="true" signature="17653:17788" ph="UPDATE clien... " />
+            <marker date="1503194612639" expanded="true" signature="18386:18539" ph="UPDATE job_p... " />
+            <marker date="1503194612639" expanded="true" signature="19140:19292" ph="UPDATE job_p... " />
+            <marker date="1503194612639" expanded="true" signature="19772:19811" ph="DELETE FROM " />
+            <marker date="1503194612639" expanded="true" signature="20197:20247" ph="UPDATE clien... " />
+            <marker date="1503194612639" expanded="true" signature="20662:20702" ph="DELETE FROM " />
+            <marker date="1503194612639" expanded="true" signature="21104:21143" ph="DELETE FROM " />
+            <marker date="1503194612639" expanded="true" signature="22149:22254" ph="INSERT INTO proffesionals... " />
+            <marker date="1503194612639" expanded="true" signature="23203:23251" ph="SELECT passw... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="24391:24458" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="25082:25132" ph="SELECT proff... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="25518:25707" ph="SELECT proff... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="26193:26245" ph="SELECT api_k... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="26690:26742" ph="SELECT proff... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="27271:27323" ph="SELECT proff... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="27954:28000" ph="SELECT * FRO... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="28446:28473" ph="SELECT * FRO... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="29145:29301" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="29849:29903" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="30389:30456" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="31219:31263" ph="DELETE FROM " />
+            <marker date="1503194612639" expanded="true" signature="31885:31936" ph="INSERT INTO proffesional_status... " />
+            <marker date="1503194612639" expanded="true" signature="32617:32676" ph="SELECT proff... proffesional_status" />
+            <marker date="1503194612639" expanded="true" signature="33148:33212" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="34039:34104" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="34931:34996" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="35802:35877" ph="INSERT INTO proffessional_rating... " />
+            <marker date="1503194612639" expanded="true" signature="36500:36553" ph="SELECT * FRO... proffessional_rating" />
+            <marker date="1503194612639" expanded="true" signature="37014:37066" ph="SELECT * FRO... proffesional_status" />
           </folding>
         </state>
       </provider>
@@ -394,48 +489,64 @@
         <state relative-caret-position="7752">
           <caret line="456" column="46" lean-forward="false" selection-start-line="456" selection-start-column="46" selection-end-line="456" selection-end-column="46" />
           <folding>
-            <marker date="1500818250358" expanded="true" signature="1093:1192" ph="INSERT INTO clients... " />
-            <marker date="1500818250358" expanded="true" signature="2235:2342" ph="INSERT INTO job_post... " />
-            <marker date="1500818250358" expanded="true" signature="2235:2370" ph="INSERT INTO job_post... " />
-            <marker date="1500818250358" expanded="true" signature="2349:2370" ph="INSERT INTO job_post... " />
-            <marker date="1500818250358" expanded="true" signature="3244:3311" ph="INSERT INTO job_categories... " />
-            <marker date="1500818250358" expanded="true" signature="3960:4037" ph="INSERT INTO job_description... " />
-            <marker date="1500818250358" expanded="true" signature="4768:4878" ph="INSERT INTO job_description... " />
-            <marker date="1500818250358" expanded="true" signature="5678:5720" ph="SELECT passw... clients" />
-            <marker date="1500818250358" expanded="true" signature="6649:6694" ph="SELECT clien... clients" />
-            <marker date="1500818250358" expanded="true" signature="7070:7163" ph="SELECT first... clients" />
-            <marker date="1500818250358" expanded="true" signature="8197:8244" ph="SELECT api_k... clients" />
-            <marker date="1500818250358" expanded="true" signature="8740:8787" ph="SELECT clien... clients" />
-            <marker date="1500818250358" expanded="true" signature="9390:9437" ph="SELECT clien... clients" />
-            <marker date="1500818250358" expanded="true" signature="10096:10129" ph="INSERT INTO tasks... " />
-            <marker date="1500818250358" expanded="true" signature="10940:10986" ph="SELECT * FRO... proffesionals" />
-            <marker date="1500818250358" expanded="true" signature="11379:11420" ph="SELECT * FRO... clients" />
-            <marker date="1500818250358" expanded="true" signature="11809:11851" ph="SELECT * FRO... job_post" />
-            <marker date="1500818250358" expanded="true" signature="12229:12251" ph="SELECT * FRO... job_post" />
-            <marker date="1500818250358" expanded="true" signature="12549:12570" ph="SELECT * FRO... clients" />
-            <marker date="1500818250358" expanded="true" signature="12831:12858" ph="SELECT * FRO... client_rating" />
-            <marker date="1500818250358" expanded="true" signature="13138:13185" ph="SELECT * FRO... client_rating" />
-            <marker date="1500818250358" expanded="true" signature="13606:13661" ph="UPDATE clien... " />
-            <marker date="1500818250358" expanded="true" signature="14059:14101" ph="INSERT INTO payments... " />
-            <marker date="1500818250358" expanded="true" signature="14059:14102" ph="INSERT INTO client_rating... " />
-            <marker date="1500818250358" expanded="true" signature="14629:14653" ph="SELECT * FRO... categories" />
-            <marker date="1500818250358" expanded="true" signature="14915:14943" ph="SELECT * FRO... job_categories" />
-            <marker date="1500818250358" expanded="true" signature="15223:15270" ph="SELECT * FRO... job_categories" />
-            <marker date="1500818250358" expanded="true" signature="15672:15701" ph="SELECT * FRO... job_description" />
-            <marker date="1500818250358" expanded="true" signature="15964:15986" ph="SELECT * FRO... payments" />
-            <marker date="1500818250358" expanded="true" signature="16260:16311" ph="SELECT * FRO... job_description" />
-            <marker date="1500818250358" expanded="true" signature="16727:16768" ph="SELECT * FRO... payments" />
-            <marker date="1500818250358" expanded="true" signature="17169:17211" ph="SELECT * FRO... payments" />
-            <marker date="1500818250358" expanded="true" signature="17715:17850" ph="UPDATE clien... " />
-            <marker date="1500818250358" expanded="true" signature="18448:18601" ph="UPDATE clien... " />
-            <marker date="1500818250358" expanded="true" signature="19202:19354" ph="UPDATE job_p... " />
-            <marker date="1500818250358" expanded="true" signature="19834:19873" ph="DELETE FROM " />
-            <marker date="1500818250358" expanded="true" signature="20259:20309" ph="UPDATE clien... " />
-            <marker date="1500818250358" expanded="true" signature="20724:20764" ph="DELETE FROM " />
-            <marker date="1500818250358" expanded="true" signature="21166:21205" ph="DELETE FROM " />
-            <marker date="1500818250358" expanded="true" signature="21581:21708" ph="SELECT t.id,... tasks" />
-            <marker date="1500818250358" expanded="true" signature="22526:22640" ph="UPDATE tasks... " />
-            <marker date="1500818250358" expanded="true" signature="23654:23707" ph="INSERT INTO user_tasks... " />
+            <marker date="1503194612639" expanded="true" signature="1093:1192" ph="INSERT INTO clients... " />
+            <marker date="1503194612639" expanded="true" signature="2235:2370" ph="INSERT INTO job_post... " />
+            <marker date="1503194612639" expanded="true" signature="3244:3311" ph="INSERT INTO job_categories... " />
+            <marker date="1503194612639" expanded="true" signature="3960:4037" ph="INSERT INTO job_description... " />
+            <marker date="1503194612639" expanded="true" signature="4768:4878" ph="INSERT INTO payments... " />
+            <marker date="1503194612639" expanded="true" signature="5678:5720" ph="SELECT passw... clients" />
+            <marker date="1503194612639" expanded="true" signature="6649:6694" ph="SELECT clien... clients" />
+            <marker date="1503194612639" expanded="true" signature="7070:7163" ph="SELECT first... clients" />
+            <marker date="1503194612639" expanded="true" signature="8197:8244" ph="SELECT api_k... clients" />
+            <marker date="1503194612639" expanded="true" signature="8741:8788" ph="SELECT clien... clients" />
+            <marker date="1503194612639" expanded="true" signature="9298:9345" ph="SELECT clien... clients" />
+            <marker date="1503194612639" expanded="true" signature="10019:10052" ph="INSERT INTO tasks... " />
+            <marker date="1503194612639" expanded="true" signature="10856:10902" ph="SELECT * FRO... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="11317:11358" ph="SELECT * FRO... clients" />
+            <marker date="1503194612639" expanded="true" signature="11747:11789" ph="SELECT * FRO... job_post" />
+            <marker date="1503194612639" expanded="true" signature="12167:12189" ph="SELECT * FRO... job_post" />
+            <marker date="1503194612639" expanded="true" signature="12487:12508" ph="SELECT * FRO... clients" />
+            <marker date="1503194612639" expanded="true" signature="12769:12796" ph="SELECT * FRO... client_rating" />
+            <marker date="1503194612639" expanded="true" signature="13076:13123" ph="SELECT * FRO... client_rating" />
+            <marker date="1503194612639" expanded="true" signature="13544:13599" ph="UPDATE clien... " />
+            <marker date="1503194612639" expanded="true" signature="13997:14040" ph="INSERT INTO client_rating... " />
+            <marker date="1503194612639" expanded="true" signature="14567:14591" ph="SELECT * FRO... categories" />
+            <marker date="1503194612639" expanded="true" signature="14853:14881" ph="SELECT * FRO... job_categories" />
+            <marker date="1503194612639" expanded="true" signature="15161:15208" ph="SELECT * FRO... job_categories" />
+            <marker date="1503194612639" expanded="true" signature="15610:15639" ph="SELECT * FRO... job_description" />
+            <marker date="1503194612639" expanded="true" signature="15902:15924" ph="SELECT * FRO... payments" />
+            <marker date="1503194612639" expanded="true" signature="16198:16249" ph="SELECT * FRO... job_description" />
+            <marker date="1503194612639" expanded="true" signature="16665:16706" ph="SELECT * FRO... payments" />
+            <marker date="1503194612639" expanded="true" signature="17107:17149" ph="SELECT * FRO... payments" />
+            <marker date="1503194612639" expanded="true" signature="17653:17788" ph="UPDATE clien... " />
+            <marker date="1503194612639" expanded="true" signature="18386:18539" ph="UPDATE job_p... " />
+            <marker date="1503194612639" expanded="true" signature="19140:19292" ph="UPDATE job_p... " />
+            <marker date="1503194612639" expanded="true" signature="19772:19811" ph="DELETE FROM " />
+            <marker date="1503194612639" expanded="true" signature="20197:20247" ph="UPDATE clien... " />
+            <marker date="1503194612639" expanded="true" signature="20662:20702" ph="DELETE FROM " />
+            <marker date="1503194612639" expanded="true" signature="21104:21143" ph="DELETE FROM " />
+            <marker date="1503194612639" expanded="true" signature="22149:22254" ph="INSERT INTO proffesionals... " />
+            <marker date="1503194612639" expanded="true" signature="23203:23251" ph="SELECT passw... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="24391:24458" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="25082:25132" ph="SELECT proff... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="25518:25707" ph="SELECT proff... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="26193:26245" ph="SELECT api_k... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="26690:26742" ph="SELECT proff... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="27271:27323" ph="SELECT proff... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="27954:28000" ph="SELECT * FRO... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="28446:28473" ph="SELECT * FRO... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="29145:29301" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="29849:29903" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="30389:30456" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="31219:31263" ph="DELETE FROM " />
+            <marker date="1503194612639" expanded="true" signature="31885:31936" ph="INSERT INTO proffesional_status... " />
+            <marker date="1503194612639" expanded="true" signature="32617:32676" ph="SELECT proff... proffesional_status" />
+            <marker date="1503194612639" expanded="true" signature="33148:33212" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="34039:34104" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="34931:34996" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="35802:35877" ph="INSERT INTO proffessional_rating... " />
+            <marker date="1503194612639" expanded="true" signature="36500:36553" ph="SELECT * FRO... proffessional_rating" />
+            <marker date="1503194612639" expanded="true" signature="37014:37066" ph="SELECT * FRO... proffesional_status" />
           </folding>
         </state>
       </provider>
@@ -451,7 +562,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="34" lean-forward="true" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -459,66 +569,81 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v1/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="1245" column="36" lean-forward="false" selection-start-line="1245" selection-start-column="18" selection-end-line="1245" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/include/DbHandler.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="93" column="31" lean-forward="true" selection-start-line="93" selection-start-column="31" selection-end-line="93" selection-end-column="31" />
+        <state relative-caret-position="252">
+          <caret line="14" column="37" lean-forward="true" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
           <folding>
-            <marker date="1500818250358" expanded="true" signature="1093:1192" ph="INSERT INTO clients... " />
-            <marker date="1500818250358" expanded="true" signature="2235:2342" ph="INSERT INTO job_post... " />
-            <marker date="1500818250358" expanded="true" signature="2235:2370" ph="INSERT INTO job_post... " />
-            <marker date="1500818250358" expanded="true" signature="2349:2370" ph="INSERT INTO job_post... " />
-            <marker date="1500818250358" expanded="true" signature="3244:3311" ph="INSERT INTO job_categories... " />
-            <marker date="1500818250358" expanded="true" signature="3960:4037" ph="INSERT INTO job_description... " />
-            <marker date="1500818250358" expanded="true" signature="4768:4878" ph="INSERT INTO job_description... " />
-            <marker date="1500818250358" expanded="true" signature="5678:5720" ph="SELECT passw... clients" />
-            <marker date="1500818250358" expanded="true" signature="6649:6694" ph="SELECT clien... clients" />
-            <marker date="1500818250358" expanded="true" signature="7070:7163" ph="SELECT first... clients" />
-            <marker date="1500818250358" expanded="true" signature="8197:8244" ph="SELECT api_k... clients" />
-            <marker date="1500818250358" expanded="true" signature="8740:8787" ph="SELECT clien... clients" />
-            <marker date="1500818250358" expanded="true" signature="9390:9437" ph="SELECT clien... clients" />
-            <marker date="1500818250358" expanded="true" signature="10096:10129" ph="INSERT INTO tasks... " />
-            <marker date="1500818250358" expanded="true" signature="10940:10986" ph="SELECT * FRO... proffesionals" />
-            <marker date="1500818250358" expanded="true" signature="11379:11420" ph="SELECT * FRO... clients" />
-            <marker date="1500818250358" expanded="true" signature="11809:11851" ph="SELECT * FRO... job_post" />
-            <marker date="1500818250358" expanded="true" signature="12229:12251" ph="SELECT * FRO... job_post" />
-            <marker date="1500818250358" expanded="true" signature="12549:12570" ph="SELECT * FRO... clients" />
-            <marker date="1500818250358" expanded="true" signature="12831:12858" ph="SELECT * FRO... client_rating" />
-            <marker date="1500818250358" expanded="true" signature="13138:13185" ph="SELECT * FRO... client_rating" />
-            <marker date="1500818250358" expanded="true" signature="13606:13661" ph="UPDATE clien... " />
-            <marker date="1500818250358" expanded="true" signature="14059:14101" ph="INSERT INTO payments... " />
-            <marker date="1500818250358" expanded="true" signature="14059:14102" ph="INSERT INTO client_rating... " />
-            <marker date="1500818250358" expanded="true" signature="14629:14653" ph="SELECT * FRO... categories" />
-            <marker date="1500818250358" expanded="true" signature="14915:14943" ph="SELECT * FRO... job_categories" />
-            <marker date="1500818250358" expanded="true" signature="15223:15270" ph="SELECT * FRO... job_categories" />
-            <marker date="1500818250358" expanded="true" signature="15672:15701" ph="SELECT * FRO... job_description" />
-            <marker date="1500818250358" expanded="true" signature="15964:15986" ph="SELECT * FRO... payments" />
-            <marker date="1500818250358" expanded="true" signature="16260:16311" ph="SELECT * FRO... job_description" />
-            <marker date="1500818250358" expanded="true" signature="16727:16768" ph="SELECT * FRO... payments" />
-            <marker date="1500818250358" expanded="true" signature="17169:17211" ph="SELECT * FRO... payments" />
-            <marker date="1500818250358" expanded="true" signature="17715:17850" ph="UPDATE clien... " />
-            <marker date="1500818250358" expanded="true" signature="18448:18601" ph="UPDATE clien... " />
-            <marker date="1500818250358" expanded="true" signature="19202:19354" ph="UPDATE job_p... " />
-            <marker date="1500818250358" expanded="true" signature="19834:19873" ph="DELETE FROM " />
-            <marker date="1500818250358" expanded="true" signature="20259:20309" ph="UPDATE clien... " />
-            <marker date="1500818250358" expanded="true" signature="20724:20764" ph="DELETE FROM " />
-            <marker date="1500818250358" expanded="true" signature="21166:21205" ph="DELETE FROM " />
-            <marker date="1500818250358" expanded="true" signature="21581:21708" ph="SELECT t.id,... tasks" />
-            <marker date="1500818250358" expanded="true" signature="22526:22640" ph="UPDATE tasks... " />
-            <marker date="1500818250358" expanded="true" signature="23654:23707" ph="INSERT INTO user_tasks... " />
+            <marker date="1503194612639" expanded="true" signature="1093:1192" ph="INSERT INTO clients... " />
+            <marker date="1503194612639" expanded="true" signature="2235:2370" ph="INSERT INTO job_post... " />
+            <marker date="1503194612639" expanded="true" signature="3244:3311" ph="INSERT INTO job_categories... " />
+            <marker date="1503194612639" expanded="true" signature="3960:4037" ph="INSERT INTO job_description... " />
+            <marker date="1503194612639" expanded="true" signature="4768:4878" ph="INSERT INTO payments... " />
+            <marker date="1503194612639" expanded="true" signature="5678:5720" ph="SELECT passw... clients" />
+            <marker date="1503194612639" expanded="true" signature="6649:6694" ph="SELECT clien... clients" />
+            <marker date="1503194612639" expanded="true" signature="7070:7163" ph="SELECT first... clients" />
+            <marker date="1503194612639" expanded="true" signature="8197:8244" ph="SELECT api_k... clients" />
+            <marker date="1503194612639" expanded="true" signature="8741:8788" ph="SELECT clien... clients" />
+            <marker date="1503194612639" expanded="true" signature="9298:9345" ph="SELECT clien... clients" />
+            <marker date="1503194612639" expanded="true" signature="10019:10052" ph="INSERT INTO tasks... " />
+            <marker date="1503194612639" expanded="true" signature="10856:10902" ph="SELECT * FRO... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="11317:11358" ph="SELECT * FRO... clients" />
+            <marker date="1503194612639" expanded="true" signature="11747:11789" ph="SELECT * FRO... job_post" />
+            <marker date="1503194612639" expanded="true" signature="12167:12189" ph="SELECT * FRO... job_post" />
+            <marker date="1503194612639" expanded="true" signature="12487:12508" ph="SELECT * FRO... clients" />
+            <marker date="1503194612639" expanded="true" signature="12769:12796" ph="SELECT * FRO... client_rating" />
+            <marker date="1503194612639" expanded="true" signature="13076:13123" ph="SELECT * FRO... client_rating" />
+            <marker date="1503194612639" expanded="true" signature="13544:13599" ph="UPDATE clien... " />
+            <marker date="1503194612639" expanded="true" signature="13997:14040" ph="INSERT INTO client_rating... " />
+            <marker date="1503194612639" expanded="true" signature="14567:14591" ph="SELECT * FRO... categories" />
+            <marker date="1503194612639" expanded="true" signature="14853:14881" ph="SELECT * FRO... job_categories" />
+            <marker date="1503194612639" expanded="true" signature="15161:15208" ph="SELECT * FRO... job_categories" />
+            <marker date="1503194612639" expanded="true" signature="15610:15639" ph="SELECT * FRO... job_description" />
+            <marker date="1503194612639" expanded="true" signature="15902:15924" ph="SELECT * FRO... payments" />
+            <marker date="1503194612639" expanded="true" signature="16198:16249" ph="SELECT * FRO... job_description" />
+            <marker date="1503194612639" expanded="true" signature="16665:16706" ph="SELECT * FRO... payments" />
+            <marker date="1503194612639" expanded="true" signature="17107:17149" ph="SELECT * FRO... payments" />
+            <marker date="1503194612639" expanded="true" signature="17653:17788" ph="UPDATE clien... " />
+            <marker date="1503194612639" expanded="true" signature="18386:18539" ph="UPDATE job_p... " />
+            <marker date="1503194612639" expanded="true" signature="19140:19292" ph="UPDATE job_p... " />
+            <marker date="1503194612639" expanded="true" signature="19772:19811" ph="DELETE FROM " />
+            <marker date="1503194612639" expanded="true" signature="20197:20247" ph="UPDATE clien... " />
+            <marker date="1503194612639" expanded="true" signature="20662:20702" ph="DELETE FROM " />
+            <marker date="1503194612639" expanded="true" signature="21104:21143" ph="DELETE FROM " />
+            <marker date="1503194612639" expanded="true" signature="22149:22254" ph="INSERT INTO proffesionals... " />
+            <marker date="1503194612639" expanded="true" signature="23203:23251" ph="SELECT passw... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="24391:24458" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="25082:25132" ph="SELECT proff... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="25518:25707" ph="SELECT proff... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="26193:26245" ph="SELECT api_k... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="26690:26742" ph="SELECT proff... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="27271:27323" ph="SELECT proff... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="27954:28000" ph="SELECT * FRO... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="28446:28473" ph="SELECT * FRO... proffesionals" />
+            <marker date="1503194612639" expanded="true" signature="29145:29301" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="29849:29903" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="30389:30456" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="31219:31263" ph="DELETE FROM " />
+            <marker date="1503194612639" expanded="true" signature="31885:31936" ph="INSERT INTO proffesional_status... " />
+            <marker date="1503194612639" expanded="true" signature="32617:32676" ph="SELECT proff... proffesional_status" />
+            <marker date="1503194612639" expanded="true" signature="33148:33212" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="34039:34104" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="34931:34996" ph="UPDATE proff... " />
+            <marker date="1503194612639" expanded="true" signature="35802:35877" ph="INSERT INTO proffessional_rating... " />
+            <marker date="1503194612639" expanded="true" signature="36500:36553" ph="SELECT * FRO... proffessional_rating" />
+            <marker date="1503194612639" expanded="true" signature="37014:37066" ph="SELECT * FRO... proffesional_status" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v1/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="146" column="42" lean-forward="true" selection-start-line="146" selection-start-column="42" selection-end-line="146" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
