@@ -408,6 +408,23 @@ class DbHandler {
     }
 
     /**
+     * Fetching all job_categories per proffesional
+     * @param String $proff_id id of the user
+     */
+    public function getClient_JobCategories($proff_id) {
+        $stmt = $this->conn->prepare("SELECT * FROM job_categories WHERE proff_id = ?");
+        $stmt->bind_param("i", $proff_id);
+        if ($stmt->execute()) {
+            $job_categories = $stmt->get_result();
+            $stmt->close();
+            return $job_categories;
+        } else {
+            return NULL;
+        }
+    }
+
+
+    /**
      * Fetching all clients Ratings
      */
     public function getAllClients_rating() {

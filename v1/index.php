@@ -1066,6 +1066,99 @@ $app->get('/payment_client/:id', 'authenticate', function($client_id) {
     }
 });
 
+/**
+ * Listing all job_categories a proffesional has signed up for
+ * method GET
+ * url /proffs_jobcategories/:id
+ */
+$app->get('/proff_jobcategories/:id', 'authenticate', function($proff_id) {
+//    global $client_id;
+    $response = array();
+    $db = new DbHandler();
+
+    // fetching all job_categories for a proff
+    $result = $db->getClient_JobCategories($proff_id);
+
+    $response["error"] = false;
+    $response["job_categories"] = array();
+
+    // looping through result and preparing clients array
+    while ($job_cats = $result->fetch_assoc()) {
+        $tmp = array();
+        $tmp["job_type"] = $job_cats["job_type"];
+        $tmp["job_categories_id"] = $job_cats["job_categories_id"];
+        $tmp["description_text"] = $job_cats["description_text"];
+        $tmp["proff_id"] = $job_cats["proff_id"];
+//        $tmp["cell_no"] = $job_cats["cell_no"];
+//        $tmp["location"] = $job_cats["location"];
+//        $tmp["image"] = $job_cats["image"];
+//        $tmp["email"] = $job_cats["email"];
+//        $tmp["status"] = $job_cats["status"];
+//        $tmp["createdAt"] = $job_cats["created_at"];
+        array_push($response["job_categories"], $tmp);
+    }
+    echoRespnse(200, $response);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
