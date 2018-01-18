@@ -528,34 +528,15 @@ $app->get('/proffesional/:id', 'authenticate', function($proff_id) {
  * Will return 404 if the task doesn't belongs to user
  */
 $app->get('/job_posts', 'authenticate', function() {
-//            global $client_id;
-    $response = array();
     $db = new DbHandler();
 
     // fetch all job posts
-    $result = $db->getAllJobPosts();
 
-    $response["error"] = false;
-    $response["job_posts"] = array();
+    $job_posts = $db->getAllJobPosts();
+    $response->getBody()->write(json_encode(array("job_posts" => $job_posts)));
 
-    // looping through result and preparing job_posts array
-    while ($job_post = $result->fetch_assoc()) {
-        $tmp = array();
-        $tmp["error"] = false;
-        $tmp["client_id"] = $job_post["client_id"];
-        $tmp["job_post_id"] = $job_post["job_post_id"];
-        $tmp["apartment_name"] = $job_post["apartment_name"];
-        $tmp["contact_cell_no"] = $job_post["contact_cell_no"];
-        $tmp["house_no"] = $job_post["house_no"];
-        $tmp["location"] = $job_post["location"];
-        $tmp["job_date"] = $job_post["job_date"];
-        $tmp["job_time"] = $job_post["job_time"];
-        $tmp["job_category"] = $job_post["job_category"];
-        $tmp["createdAt"] = $job_post["created_at"];
-        array_push($response["job_posts"], $tmp);
-    }
-    echoRespnse(200, $response);
-
+    // echo json response
+    echoRespnse(201, $response);
 });
 
 /**
@@ -1201,6 +1182,7 @@ $app->post('/proffesional_register', function() use ($app) {
     if ($res == USER_CREATED_SUCCESSFULLY) {
         $response["error"] = false;
         $response["message"] = "You are successfully registered";
+        $response['professional'] = $db->getUserByEmail($email);
     } else if ($res == USER_CREATE_FAILED) {
         $response["error"] = true;
         $response["message"] = "Oops! An error occurred while registering";
@@ -1235,22 +1217,9 @@ $app->post('/proffesional_login', function() use ($app) {
         if ($proffesional != NULL) {
 
             $proff_id = $proffesional['proff_id'];
-
-            $response["error"] = false;
-            $response['proff_id'] = $proffesional['proff_id'];
-            $response['proff_name'] = $proffesional['proff_name'];
-            $response['email'] = $proffesional['email'];
-            $response['cell_no'] = $proffesional['cell_no'];
-            $response['national_id'] = $proffesional['national_id'];
-            $response['location'] = $proffesional['location'];
-            $response['availability_status'] = $proffesional['availability_status'];
-            $response['image'] = $proffesional['image'];
-            $response['first_name'] = $proffesional['first_name'];
-            $response['last_name'] = $proffesional['last_name'];
-            $response['api_key'] = $proffesional['api_key'];
-            $response['gender'] = $proffesional['gender'];
-            $response['status'] = $proffesional['status'];
-            $response['created_at'] = $proffesional['created_at'];
+            $response['error'] = false;
+            $response['message'] = 'Login successful';
+            $response['professional'] = $db->getUserByEmail($email);
 
             $db->createProffesionalStatus($proff_id);
         } else {

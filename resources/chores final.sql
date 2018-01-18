@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 14, 2017 at 11:33 PM
+-- Generation Time: Nov 15, 2017 at 08:42 AM
 -- Server version: 10.1.26-MariaDB-1
 -- PHP Version: 7.0.22-3
 
@@ -141,7 +141,7 @@ CREATE TABLE `payments` (
 CREATE TABLE `proffesionals` (
   `proff_id` int(11) NOT NULL,
   `proff_name` varchar(45) DEFAULT NULL,
-  `passwd` varchar(45) DEFAULT NULL,
+  `passwd` text,
   `api_key` text,
   `email` varchar(45) DEFAULT NULL,
   `cell_no` varchar(45) DEFAULT NULL,
@@ -313,7 +313,7 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `proffesionals`
 --
 ALTER TABLE `proffesionals`
-  MODIFY `proff_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `proff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `proffesional_status`
 --
