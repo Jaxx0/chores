@@ -332,34 +332,41 @@ $app->post('/login', function() use ($app) {
  * method GET
  * url /clients
  */
-$app->get('/clients', 'authenticate', function() {
+$app->get('/clients', 'authenticated', function() {
             global $client_id;
             $response = array();
             $db = new DbHandler();
 
             // fetching all clients
             $result = $db->getAllClients();
+            if ($result != NULL) {
+                $response["error"] = false;
+                $response['message'] = "Clients exist";
+                $response["clients"] = array();
 
-            $response["error"] = false;
-            $response["tasks"] = array();
+                // looping through result and preparing clients array
+                while ($client = $result->fetch_assoc()) {
+                    $tmp = array();
+                    $tmp["client_id"] = $client["client_id"];
+                    $tmp["client_name"] = $client["client_name"];
+                    $tmp["first_name"] = $client["first_name"];
+                    $tmp["last_name"] = $client["last_name"];
+                    $tmp["cell_no"] = $client["cell_no"];
+                    $tmp["location"] = $client["location"];
+                    $tmp["image"] = $client["image"];
+                    $tmp["email"] = $client["email"];
+                    $tmp["status"] = $client["status"];
+                    $tmp["createdAt"] = $client["created_at"];
+                    array_push($response["clients"], $tmp);
+                }
 
-            // looping through result and preparing clients array
-            while ($client = $result->fetch_assoc()) {
-                $tmp = array();
-                $tmp["client_id"] = $client["client_id"];
-                $tmp["client_name"] = $client["client_name"];
-                $tmp["first_name"] = $client["first_name"];
-                $tmp["last_name"] = $client["last_name"];
-                $tmp["cell_no"] = $client["cell_no"];
-                $tmp["location"] = $client["location"];
-                $tmp["image"] = $client["image"];
-                $tmp["email"] = $client["email"];
-                $tmp["status"] = $client["status"];
-                $tmp["createdAt"] = $client["created_at"];
-                array_push($response["tasks"], $tmp);
+                echoRespnse(200, $response);
             }
-
-            echoRespnse(200, $response);
+            else{
+                $response['error'] = true;
+                $response['message'] = "Clients do not exist";
+                echoRespnse(404, $response);
+            }
         });
 
 /**
@@ -527,16 +534,41 @@ $app->get('/proffesional/:id', 'authenticate', function($proff_id) {
  * url /job_posts
  * Will return 404 if the task doesn't belongs to user
  */
-$app->get('/job_posts', 'authenticate', function() {
+$app->get('/job_posts', 'authenticated', function() {
+    $response = array();
     $db = new DbHandler();
 
     // fetch all job posts
-
     $job_posts = $db->getAllJobPosts();
-    $response->getBody()->write(json_encode(array("job_posts" => $job_posts)));
+    if ($job_posts != NULL) {
+        $response["error"] = false;
+        $response["message"] = "Jobs available.";
+        $response["job_posts"] = array();
 
-    // echo json response
-    echoRespnse(201, $response);
+        // looping through result and preparing job posts array
+        while ($jobs = $job_posts->fetch_assoc()) {
+            $tmp = array();
+            $tmp['job_post_id'] = $jobs['job_post_id'];
+            $tmp['client_id'] = $jobs['client_id'];
+            $tmp['location'] = $jobs['location'];
+            $tmp['apartment_name'] = $jobs['apartment_name'];
+            $tmp['house_no'] = $jobs['house_no'];
+            $tmp['contact_cell_no'] = $jobs['contact_cell_no'];
+            $tmp['job_date'] = $jobs['job_date'];
+            $tmp['job_time'] = $jobs['job_time'];
+            $tmp['job category'] = $jobs['job category'];
+            $tmp['proff_id'] = $jobs['proff_id'];
+            $tmp['created_at'] = $jobs['created_at'];
+            array_push($response["job_posts"], $tmp);
+        }
+        // echo json response
+        echoRespnse(201, $response);
+    } else {
+        $response["error"] = true;
+        $response["message"] = "No jobs available.";
+        echoRespnse(404, $response);
+    }
+
 });
 
 /**
@@ -667,27 +699,34 @@ $app->delete('/job_post_proff/:id', 'authenticate', function($proff_id) use($app
  * method GET
  * url /clients
  */
-$app->get('/clients_rating', 'authenticate', function () {
+$app->get('/clients_rating', 'authenticated', function () {
     $response = array();
     $db = new DbHandler();
 
     //fetch all clients rating
     $result = $db->getAllClients_rating();
+    if($result != NULL)
+    {
+        $response['error'] = false;
+        $response['message'] = "Clients rating exist";
+        $response['clients_rating'] = array();
 
-    $response['error'] = false;
-    $response['clients_rating'] = array();
-
-    //loop through thr results and prepare the client_rating array
-    while ($client_rating = $result->fetch_assoc()) {
-        $tmp = array();
-        $tmp['error'] = false;
-        $tmp['client_rating_id'] = $client_rating['client_rating_id'];
-        $tmp['client_id'] = $client_rating['client_id'];
-        $tmp['proff_id'] = $client_rating['proff_id'];
-        $tmp['rating'] = $client_rating['rating'];
-        array_push($response['clients_rating'], $tmp);
+        //loop through thr results and prepare the client_rating array
+        while ($client_rating = $result->fetch_assoc()) {
+            $tmp = array();
+            $tmp['client_rating_id'] = $client_rating['client_rating_id'];
+            $tmp['client_id'] = $client_rating['client_id'];
+            $tmp['proff_id'] = $client_rating['proff_id'];
+            $tmp['rating'] = $client_rating['rating'];
+            array_push($response['clients_rating'], $tmp);
+        }
+        echoRespnse( 200, $response);
     }
-    echoRespnse( 200, $response);
+    else{
+        $response['error'] = true;
+        $response['message'] = "Clients rating do not exist";
+        echoRespnse(404, $response);
+    }
 });
 
 
@@ -783,30 +822,35 @@ $app->post('/create_client_rating', function() use ($app) {
  * method GET
  * url/job_post/:id
  */
-$app->get('/job_post/:id', 'authenticate', function($client_id) {
+$app->get('/job_post/:id', 'authenticated', function($client_id) {
 //            global $client_id;
     $response = array();
     $db = new DbHandler();
 
     // fetch single client
     $result = $db->getJobPost($client_id);
+    $response["error"] = false;
+    $response["message"] = "Job exists";
+    $response['job_post'] = array();
 
     if ($result != NULL) {
-        $response["error"] = false;
-        $response["client_id"] = $result["client_id"];
-        $response["job_post_id"] = $result["job_post_id"];
-        $response["apartment_name"] = $result["apartment_name"];
-        $response["contact_cell_no"] = $result["contact_cell_no"];
-        $response["house_no"] = $result["house_no"];
-        $response["location"] = $result["location"];
-        $response["job_date"] = $result["job_date"];
-        $response["job_time"] = $result["job_time"];
-        $response["job_category"] = $result["job_category"];
-        $response["createdAt"] = $result["created_at"];
+        $tmp = array();
+        $tmp["client_id"] = $result["client_id"];
+        $tmp["job_post_id"] = $result["job_post_id"];
+        $tmp["apartment_name"] = $result["apartment_name"];
+        $tmp["contact_cell_no"] = $result["contact_cell_no"];
+        $tmp["house_no"] = $result["house_no"];
+        $tmp["location"] = $result["location"];
+        $tmp["job_date"] = $result["job_date"];
+        $tmp["job_time"] = $result["job_time"];
+        $tmp["job_category"] = $result["job_category"];
+        $tmp["createdAt"] = $result["created_at"];
+
+        array_push($response['job_post'], $tmp);
         echoRespnse(200, $response);
     } else {
         $response["error"] = true;
-        $response["message"] = "The requested resource doesn't exists";
+        $response["message"] = "Job doesn't exists";
         echoRespnse(404, $response);
     }
 });
@@ -816,25 +860,30 @@ $app->get('/job_post/:id', 'authenticate', function($client_id) {
  * method GET
  * url /categories
  */
-$app->get('/categories', 'authenticate', function () {
+$app->get('/categories', 'authenticated', function () {
     $response = array();
     $db = new DbHandler();
 
     //fetch all clients rating
     $result = $db->getAllCategories();
 
-    $response['error'] = false;
-    $response['categories'] = array();
-
-    //loop through thr results and prepare the CATEGORIES array
-    while ($category = $result->fetch_assoc()) {
-        $tmp = array();
-        $tmp['error'] = false;
-        $tmp['category_id'] = $category['category_id'];
-        $tmp['category'] = $category['category'];
-        array_push($response['categories'], $tmp);
+    if ($result != NULL) {
+        $response['error'] = false;
+        $response["message"] = "Categories exist";
+        $response['categories'] = array();
+        //loop through thr results and prepare the CATEGORIES array
+        while ($category = $result->fetch_assoc()) {
+            $tmp = array();
+            $tmp['category_id'] = $category['category_id'];
+            $tmp['category'] = $category['category'];
+            array_push($response['categories'], $tmp);
+        }
+        echoRespnse( 200, $response);
+    } else {
+        $response["error"] = true;
+        $response["message"] = "Categories doesn't exist";
+        echoRespnse(404, $response);
     }
-    echoRespnse( 200, $response);
 });
 
 /**
@@ -842,27 +891,37 @@ $app->get('/categories', 'authenticate', function () {
  * method GET
  * url /job_categories
  */
-$app->get('/job_categories', 'authenticate', function () {
+$app->get('/job_categories', 'authenticated', function () {
     $response = array();
     $db = new DbHandler();
 
     //fetch all clients rating
     $result = $db->getAllJob_Categories();
+    if ($result != NULL)
+    {
+        $response['error'] = false;
+        $response['message'] = "Job categories exist";
+        $response['job_categories'] = array();
 
-    $response['error'] = false;
-    $response['job_categories'] = array();
-
-    //loop through thr results and prepare the JOB_CATEGORIES array
-    while ($job_category = $result->fetch_assoc()) {
-        $tmp = array();
-        $tmp['error'] = false;
-        $tmp['job_categories_id'] = $job_category['job_categories_id'];
-        $tmp['job_type'] = $job_category['job_type'];
-        $tmp['description_text'] = $job_category['description_text'];
-        $tmp['proff_id'] = $job_category['proff_id'];
-        array_push($response['job_categories'], $tmp);
+        //loop through thr results and prepare the JOB_CATEGORIES array
+        while ($job_category = $result->fetch_assoc()) {
+            $tmp = array();
+            $tmp['error'] = false;
+            $tmp['job_categories_id'] = $job_category['job_categories_id'];
+            $tmp['job_type'] = $job_category['job_type'];
+            $tmp['description_text'] = $job_category['description_text'];
+            $tmp['proff_id'] = $job_category['proff_id'];
+            array_push($response['job_categories'], $tmp);
+        }
+        echoRespnse( 200, $response);
     }
-    echoRespnse( 200, $response);
+    else
+    {
+        $response['error'] = true;
+        $response['message'] = "Job categories do not exist";
+        echoRespnse(404, $response);
+    }
+    
 });
 
 /**
@@ -870,24 +929,31 @@ $app->get('/job_categories', 'authenticate', function () {
  * method GET
  * url /job_category/:id
  */
-$app->get('/job_category/:id', 'authenticate', function($proff_id) {
+$app->get('/job_category/:id', 'authenticated', function($proff_id) {
 //    global $proff_id;
     $response = array();
     $db = new DbHandler();
 
     // fetch single client
     $result = $db->getJob_category($proff_id);
+    $response["error"] = false;
+    $response["message"] = "Job category exist";
+    $response['job_category'] = array();
 
     if ($result != NULL) {
-        $response["error"] = false;
-        $response["job_categories_id"] = $result["job_categories_id"];
-        $response["job_type"] = $result["job_type"];
-        $response["description_text"] = $result["description_text"];
-        $response["proff_id"] = $result["proff_id"];
+        $tmp = array();
+        $tmp["error"] = false;
+        $tmp["message"] = "Job category  exist";
+        $tmp["job_categories_id"] = $result["job_categories_id"];
+        $tmp["job_type"] = $result["job_type"];
+        $tmp["description_text"] = $result["description_text"];
+        $tmp["proff_id"] = $result["proff_id"];
+
+        array_push($response['job_category'], $tmp);
         echoRespnse(200, $response);
     } else {
         $response["error"] = true;
-        $response["message"] = "The requested resource doesn't exists";
+        $response["message"] = "Job category doesn't exist";
         echoRespnse(404, $response);
     }
 });
@@ -897,29 +963,37 @@ $app->get('/job_category/:id', 'authenticate', function($proff_id) {
  * method GET
  * url /job_category/:id
  */
-$app->get('/jobs_description', 'authenticate', function () {
+$app->get('/jobs_description', 'authenticated', function () {
     $response = array();
     $db = new DbHandler();
 
     //fetch all clients rating
     $result = $db->getAllJobs_description();
+    if($result != NULL)
+    {
+        $response['error'] = false;
+        $response['message'] = "Job descriptions exist";
+        $response['jobs_description'] = array();
 
-    $response['error'] = false;
-    $response['job_description'] = array();
-
-    //loop through thr results and prepare the job_description array
-    while ($job_description = $result->fetch_assoc()) {
-        $tmp = array();
-        $tmp['error'] = false;
-        $tmp['job_description_id'] = $job_description['job_description_id'];
-        $tmp['job_post_id'] = $job_description['job_post_id'];
-        $tmp['text'] = $job_description['text'];
-        $tmp['quantity'] = $job_description['quantity'];
-        $tmp['image'] = $job_description['image'];
-        $tmp['amount'] = $job_description['amount'];
-        array_push($response['job_description'], $tmp);
+        //loop through thr results and prepare the job_description array
+        while ($job_description = $result->fetch_assoc()) {
+            $tmp = array();
+            $tmp['job_description_id'] = $job_description['job_description_id'];
+            $tmp['job_post_id'] = $job_description['job_post_id'];
+            $tmp['text'] = $job_description['text'];
+            $tmp['quantity'] = $job_description['quantity'];
+            $tmp['image'] = $job_description['image'];
+            $tmp['amount'] = $job_description['amount'];
+            array_push($response['jobs_description'], $tmp);
+        }
+        echoRespnse(200, $result);
     }
-    echoRespnse( 200, $response);
+    else
+    {
+        $response['error'] = true;
+        $response['message'] = "Job descriptions do not exist";
+        echoRespnse(404, $response);
+    }
 });
 
 
@@ -928,26 +1002,30 @@ $app->get('/jobs_description', 'authenticate', function () {
  * method GET
  * url /job_description/:id
  */
-$app->get('/job_description/:id', 'authenticate', function($job_post_id) {
+$app->get('/job_description/:id', 'authenticated', function($job_post_id) {
 //    global $proff_id;
     $response = array();
     $db = new DbHandler();
 
     // fetch single client
     $result = $db->getJob_description($job_post_id);
+    $response["error"] = true;
+    $response["message"] = "Job description exist";
+    $response['job_description'] = array();
 
     if ($result != NULL) {
-        $response["error"] = false;
-        $response["job_description_id"] = $result["job_description_id"];
-        $response["job_post_id"] = $result["job_post_id"];
-        $response["text"] = $result["text"];
-        $response["quantity"] = $result["quantity"];
-        $response["image"] = $result["image"];
-        $response["amount"] = $result["amount"];
+        $tmp = array();
+        $tmp["job_description_id"] = $result["job_description_id"];
+        $tmp["job_post_id"] = $result["job_post_id"];
+        $tmp["text"] = $result["text"];
+        $tmp["quantity"] = $result["quantity"];
+        $tmp["image"] = $result["image"];
+        $tmp["amount"] = $result["amount"];
+        array_push($response['job_description'], $tmp);
         echoRespnse(200, $response);
     } else {
         $response["error"] = true;
-        $response["message"] = "The requested resource doesn't exists";
+        $response["message"] = "Job description doesn't exists";
         echoRespnse(404, $response);
     }
 });
@@ -957,31 +1035,40 @@ $app->get('/job_description/:id', 'authenticate', function($job_post_id) {
  * method GET
  * url /payments
  */
-$app->get('/payments', 'authenticate', function () {
+$app->get('/payments', 'authenticated', function () {
     $response = array();
     $db = new DbHandler();
 
     //fetch all clients rating
     $result = $db->getAllPayments();
+    if($result != NULL)
+    {
+        $response['error'] = false;
+        $response["message"] = "Payment exist";
+        $response['payments'] = array();
 
-    $response['error'] = false;
-    $response['payments'] = array();
-
-    //loop through thr results and prepare the payments array
-    while ($payment = $result->fetch_assoc()) {
-        $tmp = array();
-        $tmp['error'] = false;
-        $tmp['payment_id'] = $payment['payment_id'];
-        $tmp['client_id'] = $payment['client_id'];
-        $tmp['proff_id'] = $payment['proff_id'];
-        $tmp['job_post_id'] = $payment['job_post_id'];
-        $tmp['job_description_id'] = $payment['job_description_id'];
-        $tmp['payment_date'] = $payment['payment_date'];
-        $tmp['payment_time'] = $payment['payment_time'];
-        $tmp['transaction_reference'] = $payment['transaction_reference'];
-        array_push($response['payments'], $tmp);
+        //loop through thr results and prepare the payments array
+        while ($payment = $result->fetch_assoc()) {
+            $tmp = array();
+            $tmp['error'] = false;
+            $tmp['payment_id'] = $payment['payment_id'];
+            $tmp['client_id'] = $payment['client_id'];
+            $tmp['proff_id'] = $payment['proff_id'];
+            $tmp['job_post_id'] = $payment['job_post_id'];
+            $tmp['job_description_id'] = $payment['job_description_id'];
+            $tmp['payment_date'] = $payment['payment_date'];
+            $tmp['payment_time'] = $payment['payment_time'];
+            $tmp['transaction_reference'] = $payment['transaction_reference'];
+            array_push($response['payments'], $tmp);
+        }
+        echoRespnse( 200, $response);
     }
-    echoRespnse( 200, $response);
+    else
+    {
+        $response["error"] = true;
+        $response["message"] = "Payment doesn't exist";
+        echoRespnse(404, $response);
+    }
 });
 /**
  * Listing  payments associated with a proff
@@ -989,28 +1076,32 @@ $app->get('/payments', 'authenticate', function () {
  * url /payment_[roff/:id
  */
 
-$app->get('/payment_proff/:id', 'authenticate', function($proff_id) {
+$app->get('/payment_proff/:id', 'authenticated', function($proff_id) {
 //    global $proff_id;
     $response = array();
     $db = new DbHandler();
 
     // fetch single client
     $result = $db->getProff_Payment($proff_id);
+    $response["error"] = false;
+    $response["message"] = "Proffesional payment record exist";
+    $response['payments'] = array();
 
     if ($result != NULL) {
-        $response["error"] = false;
-        $response["payment_id"] = $result["payment_id"];
-        $response["client_id"] = $result["client_id"];
-        $response["proff_id"] = $result["proff_id"];
-        $response["job_post_id"] = $result["job_post_id"];
-        $response["job_description_id"] = $result["job_description_id"];
-        $response["payment_date"] = $result["payment_date"];
-        $response["payment_time"] = $result["payment_time"];
-        $response["transaction_reference"] = $result["transaction_reference"];
+        $tmp = array();
+        $tmp["payment_id"] = $result["payment_id"];
+        $tmp["client_id"] = $result["client_id"];
+        $tmp["proff_id"] = $result["proff_id"];
+        $tmp["job_post_id"] = $result["job_post_id"];
+        $tmp["job_description_id"] = $result["job_description_id"];
+        $tmp["payment_date"] = $result["payment_date"];
+        $tmp["payment_time"] = $result["payment_time"];
+        $tmp["transaction_reference"] = $result["transaction_reference"];
+        array_push($response['payments'], $tmp);
         echoRespnse(200, $response);
     } else {
         $response["error"] = true;
-        $response["message"] = "The requested resource doesn't exists";
+        $response["message"] = "Proffesional payment recored doesn't exist";
         echoRespnse(404, $response);
     }
 });
@@ -1021,28 +1112,32 @@ $app->get('/payment_proff/:id', 'authenticate', function($proff_id) {
  * url /payment_client:id
  */
 
-$app->get('/payment_client/:id', 'authenticate', function($client_id) {
+$app->get('/payment_client/:id', 'authenticated', function($client_id) {
 //    global $proff_id;
     $response = array();
     $db = new DbHandler();
 
     // fetch single client
     $result = $db->getClient_Payment($client_id);
+    $response["error"] = false;
+    $response["message"] = "Client payment record exist";
+    $response['payments'] = array();
 
     if ($result != NULL) {
-        $response["error"] = false;
-        $response["payment_id"] = $result["payment_id"];
-        $response["client_id"] = $result["client_id"];
-        $response["proff_id"] = $result["proff_id"];
-        $response["job_post_id"] = $result["job_post_id"];
-        $response["job_description_id"] = $result["job_description_id"];
-        $response["payment_date"] = $result["payment_date"];
-        $response["payment_time"] = $result["payment_time"];
-        $response["transaction_reference"] = $result["transaction_reference"];
+        $tmp = array();
+        $tmp["payment_id"] = $result["payment_id"];
+        $tmp["client_id"] = $result["client_id"];
+        $tmp["proff_id"] = $result["proff_id"];
+        $tmp["job_post_id"] = $result["job_post_id"];
+        $tmp["job_description_id"] = $result["job_description_id"];
+        $tmp["payment_date"] = $result["payment_date"];
+        $tmp["payment_time"] = $result["payment_time"];
+        $tmp["transaction_reference"] = $result["transaction_reference"];
+        array_push($response['payments'], $tmp);
         echoRespnse(200, $response);
     } else {
         $response["error"] = true;
-        $response["message"] = "The requested resource doesn't exists";
+        $response["message"] = "Client payment record doesn't exist";
         echoRespnse(404, $response);
     }
 });
@@ -1052,33 +1147,42 @@ $app->get('/payment_client/:id', 'authenticate', function($client_id) {
  * method GET
  * url /proffs_jobcategories/:id
  */
-$app->get('/proff_jobcategories/:id', 'authenticate', function($proff_id) {
+$app->get('/proff_jobcategories/:id', 'authenticated', function($proff_id) {
 //    global $client_id;
     $response = array();
     $db = new DbHandler();
 
     // fetching all job_categories for a proff
     $result = $db->getClient_JobCategories($proff_id);
-
     $response["error"] = false;
+    $response["message"] = "Proffesional job categories exist";
     $response["job_categories"] = array();
-
-    // looping through result and preparing clients array
-    while ($job_cats = $result->fetch_assoc()) {
-        $tmp = array();
-        $tmp["job_type"] = $job_cats["job_type"];
-        $tmp["job_categories_id"] = $job_cats["job_categories_id"];
-        $tmp["description_text"] = $job_cats["description_text"];
-        $tmp["proff_id"] = $job_cats["proff_id"];
-//        $tmp["cell_no"] = $job_cats["cell_no"];
-//        $tmp["location"] = $job_cats["location"];
-//        $tmp["image"] = $job_cats["image"];
-//        $tmp["email"] = $job_cats["email"];
-//        $tmp["status"] = $job_cats["status"];
-//        $tmp["createdAt"] = $job_cats["created_at"];
-        array_push($response["job_categories"], $tmp);
+    if ($result != NULL)
+    {
+        // looping through result and preparing clients array
+        while ($job_cats = $result->fetch_assoc()) {
+            $tmp = array();
+            $tmp["job_type"] = $job_cats["job_type"];
+            $tmp["job_categories_id"] = $job_cats["job_categories_id"];
+            $tmp["description_text"] = $job_cats["description_text"];
+            $tmp["proff_id"] = $job_cats["proff_id"];
+    //        $tmp["cell_no"] = $job_cats["cell_no"];
+    //        $tmp["location"] = $job_cats["location"];
+    //        $tmp["image"] = $job_cats["image"];
+    //        $tmp["email"] = $job_cats["email"];
+    //        $tmp["status"] = $job_cats["status"];
+    //        $tmp["createdAt"] = $job_cats["created_at"];
+            array_push($response["job_categories"], $tmp);
+        }
+        echoRespnse(200, $response);
     }
-    echoRespnse(200, $response);
+    else
+    {
+        $response["error"] = true;
+        $response["message"] = "Proffesional job categories do not exist";
+        echoRespnse(404, $response);
+    }
+
 });
 
 
@@ -1253,31 +1357,40 @@ $app->get('/proffesionals', 'authenticated', function() {
 
     // fetching all proffesionals
     $result = $db->getAllproffesionals();
+    if ($result != NULL)
+    {
+        $response["error"] = false;
+        $response["message"] = "Proffesionals exist.";
+        $response["proffesionals"] = array();
 
-    $response["error"] = false;
-    $response["proffesionals"] = array();
-
-    // looping through result and preparing proffesionals array
-    while ($proffesional = $result->fetch_assoc()) {
-        $tmp = array();
-        $tmp['proff_id'] = $proffesional['proff_id'];
-        $tmp['proff_name'] = $proffesional['proff_name'];
-        $tmp['email'] = $proffesional['email'];
-        $tmp['cell_no'] = $proffesional['cell_no'];
-        $tmp['national_id'] = $proffesional['national_id'];
-        $tmp['location'] = $proffesional['location'];
-        $tmp['availability_status'] = $proffesional['availability_status'];
-        $tmp['image'] = $proffesional['image'];
-        $tmp['first_name'] = $proffesional['first_name'];
-        $tmp['last_name'] = $proffesional['last_name'];
-        $tmp['api_key'] = $proffesional['api_key'];
-        $tmp['gender'] = $proffesional['gender'];
-        $tmp['status'] = $proffesional['status'];
-        $tmp['created_at'] = $proffesional['created_at'];
-        array_push($response["proffesionals"], $tmp);
+        // looping through result and preparing proffesionals array
+        while ($proffesional = $result->fetch_assoc()) {
+            $tmp = array();
+            $tmp['proff_id'] = $proffesional['proff_id'];
+            $tmp['proff_name'] = $proffesional['proff_name'];
+            $tmp['email'] = $proffesional['email'];
+            $tmp['cell_no'] = $proffesional['cell_no'];
+            $tmp['national_id'] = $proffesional['national_id'];
+            $tmp['location'] = $proffesional['location'];
+            $tmp['availability_status'] = $proffesional['availability_status'];
+            $tmp['image'] = $proffesional['image'];
+            $tmp['first_name'] = $proffesional['first_name'];
+            $tmp['last_name'] = $proffesional['last_name'];
+            $tmp['api_key'] = $proffesional['api_key'];
+            $tmp['gender'] = $proffesional['gender'];
+            $tmp['status'] = $proffesional['status'];
+            $tmp['created_at'] = $proffesional['created_at'];
+            array_push($response["proffesionals"], $tmp);
+        }
+        echoRespnse(200, $response);
     }
-
-    echoRespnse(200, $response);
+    else
+    {
+        $response["error"] = true;
+        $response["message"] = "Proffesionals do not exist.";
+        echoRespnse(404, $response);
+    }
+    
 });
 
 /**
@@ -1293,27 +1406,32 @@ $app->get('/proffesionals/:id', 'authenticated', function($proff_id) {
 
     // fetch proffesional
     $result = $db->getProffesional($proff_id);
-
     if ($result != NULL) {
         $response["error"] = false;
-        $response['proff_id'] = $result['proff_id'];
-        $response['proff_name'] = $result['proff_name'];
-        $response['email'] = $result['email'];
-        $response['cell_no'] = $result['cell_no'];
-        $response['national_id'] = $result['national_id'];
-        $response['location'] = $result['location'];
-        $response['availability_status'] = $result['availability_status'];
-        $response['image'] = $result['image'];
-        $response['first_name'] = $result['first_name'];
-        $response['last_name'] = $result['last_name'];
-        $response['api_key'] = $result['api_key'];
-        $response['gender'] = $result['gender'];
-        $response['status'] = $result['status'];
-        $response['created_at'] = $result['created_at'];
+        $response["message"] = "Proffesional exist."
+        $response["proffesional"] = array();
+        $tmp = array();
+
+        $tmp['proff_id'] = $result['proff_id'];
+        $tmp['proff_name'] = $result['proff_name'];
+        $tmp['email'] = $result['email'];
+        $tmp['cell_no'] = $result['cell_no'];
+        $tmp['national_id'] = $result['national_id'];
+        $tmp['location'] = $result['location'];
+        $tmp['availability_status'] = $result['availability_status'];
+        $tmp['image'] = $result['image'];
+        $tmp['first_name'] = $result['first_name'];
+        $tmp['last_name'] = $result['last_name'];
+        $tmp['api_key'] = $result['api_key'];
+        $tmp['gender'] = $result['gender'];
+        $tmp['status'] = $result['status'];
+        $tmp['created_at'] = $result['created_at'];
+
+        array_push($response["proffesional"], $tmp);
         echoRespnse(200, $response);
     } else {
         $response["error"] = true;
-        $response["message"] = "The requested resource doesn't exists";
+        $response["message"] = "Proffesional doesn't exist";
         echoRespnse(404, $response);
     }
 });
