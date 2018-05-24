@@ -1273,14 +1273,13 @@ $app->put('/clients/:id', 'authenticate', function($task_id) use($app) {
  */
 $app->post('/professional_register', function() use ($app) {
     // check for required params
-    verifyRequiredParams(array('first_name', 'last_name', 'email', 'national_id', 'password'));
+    verifyRequiredParams(array('first_name', 'last_name', 'email', 'password'));
 
     $response = array();
 
     // reading post params
     $first_name = $app->request->post('first_name');
     $last_name = $app->request->post('last_name');
-    $national_id = $app->request->post('national_id');
     $email = $app->request->post('email');
     $password = $app->request->post('password');
 
@@ -1288,12 +1287,11 @@ $app->post('/professional_register', function() use ($app) {
     validateEmail($email);
 
     $db = new DbHandler();
-    $res = $db->createProfessional($first_name, $last_name, $national_id, $email, $password);
+    $res = $db->createProfessional($first_name, $last_name, $email, $password);
 
     if ($res == USER_CREATED_SUCCESSFULLY) {
         $response["error"] = false;
         $response["message"] = "You are successfully registered";
-        $response['professional'] = $db->getUserByEmail($email);
     } else if ($res == USER_CREATE_FAILED) {
         $response["error"] = true;
         $response["message"] = "Oops! An error occurred while registering";

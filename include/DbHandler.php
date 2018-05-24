@@ -701,7 +701,7 @@ class DbHandler {
      * @param String $email professional login email id
      * @param String $password professional login password
      */
-    public function createProfessional($first_name, $last_name, $national_id, $email, $password) {
+    public function createProfessional($first_name, $last_name, $email, $password) {
         require_once 'PassHash.php';
 
         // First check if user already existed in db
@@ -713,8 +713,8 @@ class DbHandler {
             $api_key = $this->generateApiKey();
 
             // insert query
-            $stmt = $this->conn->prepare("INSERT INTO proffesionals(first_name, last_name, national_id, email, passwd, api_key, status) values(?, ?, ?, ?, ?, 0)");
-            $stmt->bind_param("ssssss", $first_name, $last_name, $national_id, $email, $passwd, $api_key);
+            $stmt = $this->conn->prepare("INSERT INTO proffesionals(first_name, last_name, email, passwd, api_key, status) values(?, ?, ?, ?, ?, 0)");
+            $stmt->bind_param("sssss", $first_name, $last_name, $email, $passwd, $api_key);
 
             $result = $stmt->execute();
 
