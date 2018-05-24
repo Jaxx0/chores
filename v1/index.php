@@ -50,6 +50,43 @@ function authenticate(\Slim\Route $route) {
 }
 
 /**
+ * Adding Middle Layer to authenticate every request
+ * Checking if the request has valid api key in the 'Authorization' header
+ */
+function authenticated(\Slim\Route $route) {
+    // Getting request headers
+    $headers = apache_request_headers();
+    $response = array();
+    $app = \Slim\Slim::getInstance();
+
+    // Verifying Authorization Header
+    if (isset($headers['Authorization'])) {
+        $db = new DbHandler();
+
+        // get the api key
+        $api_key = $headers['Authorization'];
+        // validating api key
+        if (!$db->isValidProffApiKey($api_key)) {
+            // api key is not present in users table
+            $response["error"] = true;
+            $response["message"] = "Access Denied. Invalid Api key";
+            echoRespnse(401, $response);
+            $app->stop();
+        } else {
+            global $proff_id;
+            // get user primary key id
+            $proff_id = $db->getProffId($api_key);
+        }
+    } else {
+        // api key is missing in header
+        $response["error"] = true;
+        $response["message"] = "Api key is misssing";
+        echoRespnse(400, $response);
+        $app->stop();
+    }
+}
+
+/**
  * Verifying required params posted or not
  */
 function verifyRequiredParams($required_fields) {
@@ -154,136 +191,6 @@ $app->post('/register', function() use ($app) {
             echoRespnse(201, $response);
         });
 
-
-/**
- * Client Job Post
- * url - /create_job_post
- * method - POST
- * params - name, email, password
- */
-$app->post('/create_job_post', function() use ($app) {
-            // check for required params
-            verifyRequiredParams(array('location','apartment_name', 'house_no', 'contact_cell_no', 'job_date', 'job_time', 'job_category'));
-            $response = array();
-
-            // reading post params
-            $location = $app->request->post('location');
-            $apartment_name = $app->request->post('apartment_name');
-            $house_no = $app->request->post('house_no');
-            $contact_cell_no = $app->request->post('contact_cell_no');
-            $job_date = $app->request->post('job_date');
-            $job_time = $app->request->post('job_time');
-            $job_category = $app->request->post('job_category');
-
-            $db = new DbHandler();
-            $res = $db->createJob_post($location, $apartment_name, $house_no, $contact_cell_no, $job_date, $job_time, $job_category);
-
-            if ($res == USER_CREATED_SUCCESSFULLY) {
-                $response["error"] = false;
-                $response["message"] = "job successfully posted";
-            } else if ($res == USER_CREATE_FAILED) {
-                $response["error"] = true;
-                $response["message"] = "Oops! An error occurred while posting";
-            } else if ($res == USER_ALREADY_EXISTED) {
-                $response["error"] = true;
-                $response["message"] = "Sorry, job post already made";
-            }
-            // echo json response
-            echoRespnse(201, $response);
-         });
-
-
-/**
- * job category
- * url - /create_job_category
- * method - POST
- */
-$app->post('/create_job_category', function() use ($app) {
-    // check for required params
-    verifyRequiredParams(array('job_type','description_text'));
-    $response = array();
-
-    // reading post params
-    $job_type = $app->request->post('job_type');
-    $description_text = $app->request->post('description_text');
-
-    $db = new DbHandler();
-    $res = $db->createJob_category($job_type, $description_text);
-
-    if ($res == USER_CREATED_SUCCESSFULLY) {
-        $response["error"] = false;
-        $response["message"] = "job category successfully created";
-    } else if ($res == USER_CREATE_FAILED) {
-        $response["error"] = true;
-        $response["message"] = "Oops! An error occurred";
-    } else if ($res == USER_ALREADY_EXISTED) {
-        $response["error"] = true;
-        $response["message"] = "Sorry, job category already made";
-    }
-    // echo json response
-    echoRespnse(201, $response);
-});
-
-/**
- * Job Description
- * url - /create_job_description
- * method - POST
- */
-$app->post('/create_job_description', function() use ($app) {
-    // check for required params
-    verifyRequiredParams(array('text','quantity', 'image', 'amount'));
-    $response = array();
-
-        // reading post params
-        $text = $app->request->post('text');
-        $quantity = $app->request->post('quantity');
-        $image = $app->request->post('image');
-        $amount = $app->request->post('amount');
-
-        $db = new DbHandler();
-        $res = $db->createJob_description($text, $quantity, $image, $amount);
-
-        if  ($res == USER_CREATED_SUCCESSFULLY) {
-            $response["error"] = false;
-            $response["message"] = "Job description successfully made";
-        } else if ($res == USER_CREATE_FAILED) {
-            $response["error"] = true;
-            $response["message"] = "Oops! An error occurred while posting";
-        }
-    // echo json response
-    echoRespnse(201, $response);
-});
-
-/**
- * Create a payment
- * url - /make_payment
- * method - POST
- */
-$app->post('/make_payment', function() use ($app) {
-    // check for required params
-    verifyRequiredParams(array('transaction_reference','payment_time', 'payment_date', 'job_description_id'));
-    $response = array();
-
-    // reading post params
-    $transaction_reference = $app->request->post('transaction_reference');
-    $payment_time = $app->request->post('payment_time');
-    $payment_date = $app->request->post('payment_date');
-    $job_description_id = $app->request->post('job_description_id');
-
-    $db = new DbHandler();
-    $res = $db->create_payment($transaction_reference, $payment_time, $payment_date, $job_description_id);
-
-    if  ($res == USER_CREATED_SUCCESSFULLY) {
-        $response["error"] = false;
-        $response["message"] = "Payment successfully made";
-    } else if ($res == USER_CREATE_FAILED) {
-        $response["error"] = true;
-        $response["message"] = "Oops! An error occurred while making Payment";
-    }
-    // echo json response
-    echoRespnse(201, $response);
-});
-
 /**
  * Client Login
  * url - /login
@@ -307,11 +214,17 @@ $app->post('/login', function() use ($app) {
 
                 if ($user != NULL) {
                     $response["error"] = false;
-                    $response['first_name'] = $user['first_name'];
-                    $response['last_name'] = $user['last_name'];
-                    $response['email'] = $user['email'];
-                    $response['apiKey'] = $user['api_key'];
-                    $response['createdAt'] = $user['created_at'];
+                    $response["client_id"] = $result["client_id"];
+                    $response["client_name"] = $result["client_name"];
+                    $response["first_name"] = $result["first_name"];
+                    $response["last_name"] = $result["last_name"];
+                    $response["cell_no"] = $result["cell_no"];
+                    $response["location"] = $result["location"];
+                    $response["image"] = $result["image"];
+                    $response["email"] = $result["email"];
+                    $response["status"] = $result["status"];
+                    $response['api_key'] = $result['api_key'];
+                    $response["createdAt"] = $result["created_at"];
                 } else {
                     // unknown error occurred
                     $response['error'] = true;
@@ -326,13 +239,12 @@ $app->post('/login', function() use ($app) {
             echoRespnse(200, $response);
         });
 
-
 /**
  * Listing all clients
  * method GET
  * url /clients
  */
-$app->get('/clients', 'authenticated', function() {
+$app->get('/clients', 'authenticate', function() {
             global $client_id;
             $response = array();
             $db = new DbHandler();
@@ -368,6 +280,7 @@ $app->get('/clients', 'authenticated', function() {
                 echoRespnse(404, $response);
             }
         });
+
 
 /**
  * Listing single client
@@ -410,7 +323,7 @@ $app->get('/client/:id', 'authenticate', function($client_id) {
  * params task, status
  * url - /tasks/:id
  */
-$app->put('/clients/:id', 'authenticate', function($client_id) use($app) {
+$app->put('/client/:id', 'authenticate', function($client_id) use($app) {
             // check for required params
             verifyRequiredParams(array('client_name', 'first_name', 'last_name', 'cell_no', 'location', 'image', 'status'));
 
@@ -431,11 +344,11 @@ $app->put('/clients/:id', 'authenticate', function($client_id) use($app) {
             if ($result) {
                 // task updated successfully
                 $response["error"] = false;
-                $response["message"] = "Task updated successfully";
+                $response["message"] = "Your profile updated successfully";
             } else {
                 // task failed to update
                 $response["error"] = true;
-                $response["message"] = "Task failed to update. Please try again!";
+                $response["message"] = "Your profile failed to update. Please try again!";
             }
             echoRespnse(200, $response);
 });
@@ -462,11 +375,11 @@ $app->put('/client_deactivate/:id', 'authenticate', function($client_id) use($ap
     if ($result) {
         // task updated successfully
         $response["error"] = false;
-        $response["message"] = "Task updated successfully";
+        $response["message"] = "Your account deactivated successfully";
     } else {
         // task failed to update
         $response["error"] = true;
-        $response["message"] = "Task failed to update. Please try again!";
+        $response["message"] = "Your account failed to deactivate. Please try again!";
     }
     echoRespnse(200, $response);
 });
@@ -477,11 +390,110 @@ $app->put('/client_deactivate/:id', 'authenticate', function($client_id) use($ap
  * url - /clients/:id
  */
 
-$app->delete('/clients/:id', 'authenticate', function($client_id) use($app) {
+$app->delete('/client/:id', 'authenticate', function($client_id) use($app) {
 
     $db = new DbHandler();
     $response = array();
     $result = $db->deleteClient($client_id);
+    if ($result) {
+        // client deleted successfully
+        $response["error"] = false;
+        $response["message"] = "Account deleted succesfully";
+    } else {
+        // client failed to delete
+        $response["error"] = true;
+        $response["message"] = "Account failed to delete. Please try again!";
+    }
+    echoRespnse(200, $response);
+});
+
+/**
+ * Updating a job post using client_id
+ * method PUT
+ * params task, status
+ * url - /job_posts/:id
+ */
+$app->put('/job_posts_client/:id', 'authenticate', function($client_id) use($app) {
+    // check for required params
+    verifyRequiredParams(array('apartment_name', 'house_no', 'contact_cell_no', 'job_date', 'location', 'job_time', 'job_category'));
+
+    //    global $client_id;
+    $apartment_name = $app->request->put('apartment_name');
+    $house_no = $app->request->put('house_no');
+    $contact_cell_no = $app->request->put('contact_cell_no');
+    $job_date = $app->request->put('job_date');
+    $location = $app->request->put('location');
+    $job_time = $app->request->put('job_time');
+    $proff_id = $app->request->put('proff_id');
+    $job_post_id = $app->request->put('job_post_id');
+    $job_category = $app->request->put('job_category');
+
+    $db = new DbHandler();
+    $response = array();
+
+    // updating task
+    $result = $db->updateJob_PostClient($location, $apartment_name, $house_no, $contact_cell_no, $job_date, $job_time, $job_category, $proff_id, $client_id, $job_post_id);
+    if ($result) {
+        // task updated successfully
+        $response["error"] = false;
+        $response["message"] = "Task updated successfully";
+    } else {
+        // task failed to update
+        $response["error"] = true;
+        $response["message"] = "Task failed to update. Please try again!";
+    }
+    echoRespnse(200, $response);
+});
+
+/**
+ * Updating a job post using proff_id
+ * method PUT
+ * params task, status
+ * url - /job_posts/:id
+ */
+$app->put('/job_posts_proff/:id', 'authenticate', function($proff_id) use($app) {
+    // check for required params
+    verifyRequiredParams(array('apartment_name', 'house_no', 'contact_cell_no', 'job_date', 'location', 'job_time', 'job_category'));
+
+    //    global $client_id;
+    $apartment_name = $app->request->put('apartment_name');
+    $house_no = $app->request->put('house_no');
+    $contact_cell_no = $app->request->put('contact_cell_no');
+    $job_date = $app->request->put('job_date');
+    $location = $app->request->put('location');
+    $job_time = $app->request->put('job_time');
+    $client_id = $app->request->put('client_id');
+    $job_post_id = $app->request->put('job_post_id');
+    $job_category = $app->request->put('job_category');
+
+    $db = new DbHandler();
+    $response = array();
+
+    // updating task
+    $result = $db->updateJob_PostProff($location, $apartment_name, $house_no, $contact_cell_no, $job_date, $job_time, $job_category, $proff_id,  $job_post_id);
+    if ($result) {
+        // task updated successfully
+        $response["error"] = false;
+        $response["message"] = "Job updated successfully";
+    } else {
+        // task failed to update
+        $response["error"] = true;
+        $response["message"] = "Job failed to update. Please try again!";
+    }
+    echoRespnse(200, $response);
+});
+
+/**
+ * Deleting an existing job_post using client_id
+ * method DELETE
+ * url - /job_post_client/:id
+ */
+
+$app->delete('/job_post_client/:id', 'authenticate', function($client_id) use($app) {
+
+    $db = new DbHandler();
+    $response = array();
+    $result = $db->delete_job_post_Client($client_id);
     if ($result) {
         // client deleted successfully
         $response["error"] = false;
@@ -492,6 +504,159 @@ $app->delete('/clients/:id', 'authenticate', function($client_id) use($app) {
         $response["message"] = "Task failed to delete. Please try again!";
     }
     echoRespnse(200, $response);
+});
+
+
+/**
+ * Deleting an existing job_post using Proff_id
+ * method DELETE
+ * url - /clients/:id
+ */
+
+$app->delete('/job_post_proff/:id', 'authenticate', function($proff_id) use($app) {
+
+    $db = new DbHandler();
+    $response = array();
+    $result = $db->delete_job_post_proff($proff_id);
+    if ($result) {
+        // client deleted successfully
+        $response["error"] = false;
+        $response["message"] = "Task deleted succesfully";
+    } else {
+        // client failed to delete
+        $response["error"] = true;
+        $response["message"] = "Task failed to delete. Please try again!";
+    }
+    echoRespnse(200, $response);
+});
+
+/**
+ * Client Job Post
+ * url - /create_job_post
+ * method - POST
+ * params - name, email, password
+ */
+$app->post('/create_job_post', 'authenticate', function() use ($app) {
+            // check for required params
+            verifyRequiredParams(array('location','apartment_name', 'house_no', 'contact_cell_no', 'job_date', 'job_time', 'job_category'));
+            $response = array();
+
+            // reading post params
+            $location = $app->request->post('location');
+            $apartment_name = $app->request->post('apartment_name');
+            $house_no = $app->request->post('house_no');
+            $contact_cell_no = $app->request->post('contact_cell_no');
+            $job_date = $app->request->post('job_date');
+            $job_time = $app->request->post('job_time');
+            $job_category = $app->request->post('job_category');
+
+            $db = new DbHandler();
+            $res = $db->createJob_post($location, $apartment_name, $house_no, $contact_cell_no, $job_date, $job_time, $job_category);
+
+            if ($res == USER_CREATED_SUCCESSFULLY) {
+                $response["error"] = false;
+                $response["message"] = "job successfully posted";
+            } else if ($res == USER_CREATE_FAILED) {
+                $response["error"] = true;
+                $response["message"] = "Oops! An error occurred while posting";
+            } else if ($res == USER_ALREADY_EXISTED) {
+                $response["error"] = true;
+                $response["message"] = "Sorry, job post already made";
+            }
+            // echo json response
+            echoRespnse(201, $response);
+         });
+
+
+/**
+ * job category
+ * url - /create_job_category
+ * method - POST
+ */
+$app->post('/create_job_category', 'authenticate', function() use ($app) {
+    // check for required params
+    verifyRequiredParams(array('job_type','description_text'));
+    $response = array();
+
+    // reading post params
+    $job_type = $app->request->post('job_type');
+    $description_text = $app->request->post('description_text');
+
+    $db = new DbHandler();
+    $res = $db->createJob_category($job_type, $description_text);
+
+    if ($res == USER_CREATED_SUCCESSFULLY) {
+        $response["error"] = false;
+        $response["message"] = "Job category successfully created";
+    } else if ($res == USER_CREATE_FAILED) {
+        $response["error"] = true;
+        $response["message"] = "Oops! An error occurred";
+    } else if ($res == USER_ALREADY_EXISTED) {
+        $response["error"] = true;
+        $response["message"] = "Sorry, job category already made";
+    }
+    // echo json response
+    echoRespnse(201, $response);
+});
+
+/**
+ * Job Description
+ * url - /create_job_description
+ * method - POST
+ */
+$app->post('/create_job_description', 'authenticate', function() use ($app) {
+    // check for required params
+    verifyRequiredParams(array('text','quantity', 'image', 'amount'));
+    $response = array();
+
+        // reading post params
+        $text = $app->request->post('text');
+        $quantity = $app->request->post('quantity');
+        $image = $app->request->post('image');
+        $amount = $app->request->post('amount');
+
+        $db = new DbHandler();
+        $res = $db->createJob_description($text, $quantity, $image, $amount);
+
+        if  ($res == USER_CREATED_SUCCESSFULLY) {
+            $response["error"] = false;
+            $response["message"] = "Job description successfully made";
+        } else if ($res == USER_CREATE_FAILED) {
+            $response["error"] = true;
+            $response["message"] = "Oops! An error occurred while posting";
+        }
+    // echo json response
+    echoRespnse(201, $response);
+});
+
+/**
+ * Create a payment
+ * url - /make_payment
+ * method - POST
+ */
+$app->post('/make_payment', 'authenticate', function() use ($app) {
+    // check for required params
+    verifyRequiredParams(array('transaction_reference','payment_time', 'payment_date', 'job_description_id'));
+    $response = array();
+
+    // reading post params
+    $transaction_reference = $app->request->post('transaction_reference');
+    $payment_time = $app->request->post('payment_time');
+    $payment_date = $app->request->post('payment_date');
+    $job_description_id = $app->request->post('job_description_id');
+
+    $db = new DbHandler();
+    $res = $db->create_payment($transaction_reference, $payment_time, $payment_date, $job_description_id);
+
+    if  ($res == USER_CREATED_SUCCESSFULLY) {
+        $response["error"] = false;
+        $response["message"] = "Payment successfully made";
+    } else if ($res == USER_CREATE_FAILED) {
+        $response["error"] = true;
+        $response["message"] = "Oops! An error occurred while making Payment";
+    }
+    // echo json response
+    echoRespnse(201, $response);
 });
 
 
@@ -571,128 +736,6 @@ $app->get('/job_posts', 'authenticated', function() {
 
 });
 
-/**
- * Updating a job post using client_id
- * method PUT
- * params task, status
- * url - /job_posts/:id
- */
-$app->put('/job_posts_client/:id', 'authenticate', function($client_id) use($app) {
-    // check for required params
-    verifyRequiredParams(array('apartment_name', 'house_no', 'contact_cell_no', 'job_date', 'location', 'job_time', 'job_category'));
-
-    //    global $client_id;
-    $apartment_name = $app->request->put('apartment_name');
-    $house_no = $app->request->put('house_no');
-    $contact_cell_no = $app->request->put('contact_cell_no');
-    $job_date = $app->request->put('job_date');
-    $location = $app->request->put('location');
-    $job_time = $app->request->put('job_time');
-    $proff_id = $app->request->put('proff_id');
-    $job_post_id = $app->request->put('job_post_id');
-    $job_category = $app->request->put('job_category');
-
-    $db = new DbHandler();
-    $response = array();
-
-    // updating task
-    $result = $db->updateJob_PostClient($location, $apartment_name, $house_no, $contact_cell_no, $job_date, $job_time, $job_category, $proff_id, $client_id, $job_post_id);
-    if ($result) {
-        // task updated successfully
-        $response["error"] = false;
-        $response["message"] = "Task updated successfully";
-    } else {
-        // task failed to update
-        $response["error"] = true;
-        $response["message"] = "Task failed to update. Please try again!";
-    }
-    echoRespnse(200, $response);
-});
-
-/**
- * Updating a job post using Proff_id
- * method PUT
- * params task, status
- * url - /job_posts/:id
- */
-$app->put('/job_posts_proff/:id', 'authenticate', function($proff_id) use($app) {
-    // check for required params
-    verifyRequiredParams(array('apartment_name', 'house_no', 'contact_cell_no', 'job_date', 'location', 'job_time', 'job_category'));
-
-    //    global $client_id;
-    $apartment_name = $app->request->put('apartment_name');
-    $house_no = $app->request->put('house_no');
-    $contact_cell_no = $app->request->put('contact_cell_no');
-    $job_date = $app->request->put('job_date');
-    $location = $app->request->put('location');
-    $job_time = $app->request->put('job_time');
-    $client_id = $app->request->put('client_id');
-    $job_post_id = $app->request->put('job_post_id');
-    $job_category = $app->request->put('job_category');
-
-    $db = new DbHandler();
-    $response = array();
-
-    // updating task
-    $result = $db->updateJob_PostProff($location, $apartment_name, $house_no, $contact_cell_no, $job_date, $job_time, $job_category, $proff_id,  $job_post_id);
-    if ($result) {
-        // task updated successfully
-        $response["error"] = false;
-        $response["message"] = "Task updated successfully";
-    } else {
-        // task failed to update
-        $response["error"] = true;
-        $response["message"] = "Task failed to update. Please try again!";
-    }
-    echoRespnse(200, $response);
-});
-
-/**
- * Deleting an existing job_post using client_id
- * method DELETE
- * url - /job_post_client/:id
- */
-
-$app->delete('/job_post_client/:id', 'authenticate', function($client_id) use($app) {
-
-    $db = new DbHandler();
-    $response = array();
-    $result = $db->delete_job_post_Client($client_id);
-    if ($result) {
-        // client deleted successfully
-        $response["error"] = false;
-        $response["message"] = "Task deleted succesfully";
-    } else {
-        // client failed to delete
-        $response["error"] = true;
-        $response["message"] = "Task failed to delete. Please try again!";
-    }
-    echoRespnse(200, $response);
-});
-
-
-/**
- * Deleting an existing job_post using Proff_id
- * method DELETE
- * url - /clients/:id
- */
-
-$app->delete('/job_post_proff/:id', 'authenticate', function($proff_id) use($app) {
-
-    $db = new DbHandler();
-    $response = array();
-    $result = $db->delete_job_post_proff($proff_id);
-    if ($result) {
-        // client deleted successfully
-        $response["error"] = false;
-        $response["message"] = "Task deleted succesfully";
-    } else {
-        // client failed to delete
-        $response["error"] = true;
-        $response["message"] = "Task failed to delete. Please try again!";
-    }
-    echoRespnse(200, $response);
-});
 
 /**
  * Listing all clients_rating
@@ -1216,44 +1259,6 @@ $app->put('/clients/:id', 'authenticate', function($task_id) use($app) {
             }
             echoRespnse(200, $response);
         });
-
-
-/**
- * Adding Middle Layer to authenticate every request
- * Checking if the request has valid api key in the 'Authorization' header
- */
-function authenticated(\Slim\Route $route) {
-    // Getting request headers
-    $headers = apache_request_headers();
-    $response = array();
-    $app = \Slim\Slim::getInstance();
-
-    // Verifying Authorization Header
-    if (isset($headers['Authorization'])) {
-        $db = new DbHandler();
-
-        // get the api key
-        $api_key = $headers['Authorization'];
-        // validating api key
-        if (!$db->isValidProffApiKey($api_key)) {
-            // api key is not present in users table
-            $response["error"] = true;
-            $response["message"] = "Access Denied. Invalid Api key";
-            echoRespnse(401, $response);
-            $app->stop();
-        } else {
-            global $proff_id;
-            // get user primary key id
-            $proff_id = $db->getProffId($api_key);
-        }
-    } else {
-        // api key is missing in header
-        $response["error"] = true;
-        $response["message"] = "Api key is misssing";
-        echoRespnse(400, $response);
-        $app->stop();
-    }
-}
 
 /**
  * ----------- METHODS WITHOUT AUTHENTICATION ---------------------------------
