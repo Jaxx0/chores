@@ -1408,7 +1408,7 @@ $app->get('/proffesionals/:id', 'authenticated', function($proff_id) {
     $result = $db->getProffesional($proff_id);
     if ($result != NULL) {
         $response["error"] = false;
-        $response["message"] = "Proffesional exist."
+        $response["message"] = "Proffesional exist.";
         $response["proffesional"] = array();
         $tmp = array();
 
