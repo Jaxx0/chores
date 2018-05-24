@@ -655,7 +655,7 @@ class DbHandler {
      * Deactivate a client
      * @param String $client_id id of the client
      */
-    public function DeactivateClient($status, $client_id) {
+    public function deactivateClient($status, $client_id) {
         $stmt = $this->conn->prepare("UPDATE clients set status = ?  WHERE client_id = ?");
         $stmt->bind_param("ii", $status, $client_id);
         $stmt->execute();
