@@ -220,38 +220,38 @@ class DbHandler {
      * @param String $email Client email id
      */
     public function getClientByEmail($email) {
-        $stmt = $this->conn->prepare("SELECT * FROM clients WHERE email = ?");
-        $stmt->bind_param("i", $email);
-        if ($stmt->execute()) {
-            $client = $stmt->get_result()->fetch_assoc();
-            $stmt->close();
-            return $client;
-        } else {
-            return NULL;
-        }
-
-//        $stmt = $this->conn->prepare("SELECT first_name, last_name, email, api_key, status, created_at FROM clients WHERE email = ?");
-//        $stmt->bind_param("s", $email);
+//        $stmt = $this->conn->prepare("SELECT * FROM clients WHERE email = ?");
+//        $stmt->bind_param("i", $email);
 //        if ($stmt->execute()) {
-//            // $user = $stmt->get_result()->fetch_assoc();
-//            $stmt->bind_result( $first_name, $last_name, $email, $api_key, $status, $created_at);
-//            $stmt->fetch();
-//            $user = array();
-////            $user["client_name"] = $client_name;
-//            $user["first_name"] = $first_name;
-//            $user["last_name"] = $last_name;
-//            $user["email"] = $email;
-////            $user["cell_no"] = $cell_no;
-////            $user["location"] = $location;
-////            $user["image"] = $image;
-//            $user["api_key"] = $api_key;
-//            $user["status"] = $status;
-//            $user["created_at"] = $created_at;
+//            $client = $stmt->get_result()->fetch_assoc();
 //            $stmt->close();
-//            return $user;
+//            return $client;
 //        } else {
 //            return NULL;
 //        }
+
+        $stmt = $this->conn->prepare("SELECT client_name, first_name, last_name, email, api_key, status, location, cell_no, image, created_at FROM clients WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        if ($stmt->execute()) {
+            // $user = $stmt->get_result()->fetch_assoc();
+            $stmt->bind_result( $client_name, $first_name, $last_name, $email, $api_key, $status, $location, $cell_no, $image, $created_at);
+            $stmt->fetch();
+            $user = array();
+            $user["client_name"] = $client_name;
+            $user["first_name"] = $first_name;
+            $user["last_name"] = $last_name;
+            $user["email"] = $email;
+            $user["cell_no"] = $cell_no;
+            $user["location"] = $location;
+            $user["image"] = $image;
+            $user["api_key"] = $api_key;
+            $user["status"] = $status;
+            $user["created_at"] = $created_at;
+            $stmt->close();
+            return $user;
+        } else {
+            return NULL;
+        }
     }
 
     /**
