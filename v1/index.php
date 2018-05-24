@@ -408,6 +408,43 @@ $app->delete('/client/:id', 'authenticate', function($client_id) use($app) {
 });
 
 /**
+ * Client Job Post
+ * url - /create_job_post
+ * method - POST
+ * params - name, email, password
+ */
+$app->post('/create_job_post', 'authenticate', function() use ($app) {
+    // check for required params
+    verifyRequiredParams(array('location','apartment_name', 'house_no', 'contact_cell_no', 'job_date', 'job_time', 'job_category'));
+    $response = array();
+
+    // reading post params
+    $location = $app->request->post('location');
+    $apartment_name = $app->request->post('apartment_name');
+    $house_no = $app->request->post('house_no');
+    $contact_cell_no = $app->request->post('contact_cell_no');
+    $job_date = $app->request->post('job_date');
+    $job_time = $app->request->post('job_time');
+    $job_category = $app->request->post('job_category');
+
+    $db = new DbHandler();
+    $res = $db->createJob_post($location, $apartment_name, $house_no, $contact_cell_no, $job_date, $job_time, $job_category);
+
+    if ($res == USER_CREATED_SUCCESSFULLY) {
+        $response["error"] = false;
+        $response["message"] = "job successfully posted";
+    } else if ($res == USER_CREATE_FAILED) {
+        $response["error"] = true;
+        $response["message"] = "Oops! An error occurred while posting";
+    } else if ($res == USER_ALREADY_EXISTED) {
+        $response["error"] = true;
+        $response["message"] = "Sorry, job post already made";
+    }
+    // echo json response
+    echoRespnse(201, $response);
+});
+
+/**
  * Updating a job post using client_id
  * method PUT
  * params task, status
@@ -530,42 +567,6 @@ $app->delete('/job_post_proff/:id', 'authenticate', function($proff_id) use($app
     echoRespnse(200, $response);
 });
 
-/**
- * Client Job Post
- * url - /create_job_post
- * method - POST
- * params - name, email, password
- */
-$app->post('/create_job_post', 'authenticate', function() use ($app) {
-            // check for required params
-            verifyRequiredParams(array('location','apartment_name', 'house_no', 'contact_cell_no', 'job_date', 'job_time', 'job_category'));
-            $response = array();
-
-            // reading post params
-            $location = $app->request->post('location');
-            $apartment_name = $app->request->post('apartment_name');
-            $house_no = $app->request->post('house_no');
-            $contact_cell_no = $app->request->post('contact_cell_no');
-            $job_date = $app->request->post('job_date');
-            $job_time = $app->request->post('job_time');
-            $job_category = $app->request->post('job_category');
-
-            $db = new DbHandler();
-            $res = $db->createJob_post($location, $apartment_name, $house_no, $contact_cell_no, $job_date, $job_time, $job_category);
-
-            if ($res == USER_CREATED_SUCCESSFULLY) {
-                $response["error"] = false;
-                $response["message"] = "job successfully posted";
-            } else if ($res == USER_CREATE_FAILED) {
-                $response["error"] = true;
-                $response["message"] = "Oops! An error occurred while posting";
-            } else if ($res == USER_ALREADY_EXISTED) {
-                $response["error"] = true;
-                $response["message"] = "Sorry, job post already made";
-            }
-            // echo json response
-            echoRespnse(201, $response);
-         });
 
 
 /**
@@ -1272,13 +1273,14 @@ $app->put('/clients/:id', 'authenticate', function($task_id) use($app) {
  */
 $app->post('/professional_register', function() use ($app) {
     // check for required params
-    verifyRequiredParams(array('first_name', 'last_name', 'email', 'password'));
+    verifyRequiredParams(array('first_name', 'last_name', 'email', 'national_id', 'password'));
 
     $response = array();
 
     // reading post params
     $first_name = $app->request->post('first_name');
     $last_name = $app->request->post('last_name');
+    $national_id = $app->request->post('national_id');
     $email = $app->request->post('email');
     $password = $app->request->post('password');
 
@@ -1286,7 +1288,7 @@ $app->post('/professional_register', function() use ($app) {
     validateEmail($email);
 
     $db = new DbHandler();
-    $res = $db->createProfessional($first_name, $last_name, $email, $password);
+    $res = $db->createProfessional($first_name, $last_name, $national_id, $email, $password);
 
     if ($res == USER_CREATED_SUCCESSFULLY) {
         $response["error"] = false;
