@@ -337,17 +337,17 @@ class DbHandler {
     }
 
     /**
-     * Fetching single Proffesional
+     * Fetching single professional
      * @param String $task_id id of the task
 
 
-    public function getProffesional($proff_id) {
-        $stmt = $this->conn->prepare("SELECT * FROM proffesionals WHERE proff_id = ?");
+    public function getprofessional($proff_id) {
+        $stmt = $this->conn->prepare("SELECT * FROM professionals WHERE proff_id = ?");
         $stmt->bind_param("i", $proff_id);
         if ($stmt->execute()) {
-            $proffesional = $stmt->get_result()->fetch_assoc();
+            $professional = $stmt->get_result()->fetch_assoc();
             $stmt->close();
-            return $proffesional;
+            return $professional;
         } else {
             return NULL;
         }
@@ -412,7 +412,7 @@ class DbHandler {
     }
 
     /**
-     * Fetching all job_categories per proffesional
+     * Fetching all job_categories per professional
      * @param String $proff_id id of the user
      */
     public function getClient_JobCategories($proff_id) {
@@ -691,16 +691,16 @@ class DbHandler {
     }
 
 
-    /* ------------- `proffesionals` table method ------------------ */
+    /* ------------- `professionals` table method ------------------ */
 
     /**
-     * Creating new proffesional
-     * @param String $first_name proffesional first name
-     * @param String $las_name proffesional last name
-     * @param String $email proffesional login email id
-     * @param String $password proffesional login password
+     * Creating new professional
+     * @param String $first_name professional first name
+     * @param String $las_name professional last name
+     * @param String $email professional login email id
+     * @param String $password professional login password
      */
-    public function createProffesional($first_name, $last_name, $email, $password) {
+    public function createProfessional($first_name, $last_name, $email, $password) {
         require_once 'PassHash.php';
 
         // First check if user already existed in db
@@ -734,10 +734,10 @@ class DbHandler {
     }
 
     /**
-     * Checking proffesional login
-     * @param String $email proffesional login email id
-     * @param String $password proffesional login password
-     * @return boolean proffesional login status success/fail
+     * Checking professional login
+     * @param String $email professional login email id
+     * @param String $password professional login password
+     * @return boolean professional login status success/fail
      */
     public function checkProffLogin($email, $password) {
         // fetching user by email
@@ -775,10 +775,10 @@ class DbHandler {
     }
 
     /**
-     * Change proffesional password
-     * @param String $password proffesional login password
+     * Change professional password
+     * @param String $password professional login password
      */
-    public function changeProffesionalPassword($password, $proff_id) {
+    public function changeProfessionalPassword($password, $proff_id) {
         require_once 'PassHash.php';
 
         // Generating password hash
@@ -806,7 +806,7 @@ class DbHandler {
     }
 
     /**
-     * Checking for duplicate proffesional by email address
+     * Checking for duplicate professional by email address
      * @param String $email email to check in db
      * @return boolean
      */
@@ -821,24 +821,24 @@ class DbHandler {
     }
 
     /**
-     * Fetching proffesional by email
-     * @param String $email proffesional email id
+     * Fetching professional by email
+     * @param String $email professional email id
      */
     public function getUserByEmail($email) {
         $stmt = $this->conn->prepare("SELECT proff_id, proff_name, api_key, email, cell_no, national_id, location, availability_status, image, first_name, last_name, gender, status, created_at FROM proffesionals WHERE email = ?");
         $stmt->bind_param("s", $email);
         if ($stmt->execute()) {
-            $proffesional = $stmt->get_result()->fetch_assoc();
+            $professional = $stmt->get_result()->fetch_assoc();
             $stmt->close();
-            return $proffesional;
+            return $professional;
         } else {
             return NULL;
         }
     }
 
     /**
-     * Fetching proffesional api key
-     * @param String $proff_id proffesional id primary key in proffesionals table
+     * Fetching professional api key
+     * @param String $proff_id professional id primary key in professional table
      */
     public function getProffApiKeyById($proff_id) {
         $stmt = $this->conn->prepare("SELECT api_key FROM proffesionals WHERE proff_id = ?");
@@ -853,8 +853,8 @@ class DbHandler {
     }
 
     /**
-     * Fetching proffesional id by api key
-     * @param String $api_key proffesional api key
+     * Fetching professional id by api key
+     * @param String $api_key professional api key
      */
     public function getProffId($api_key) {
         $stmt = $this->conn->prepare("SELECT proff_id FROM proffesionals WHERE api_key = ?");
@@ -869,9 +869,9 @@ class DbHandler {
     }
 
     /**
-     * Validating proffesional api key
+     * Validating professional api key
      * If the api key is there in db, it is a valid key
-     * @param String $api_key proffesional api key
+     * @param String $api_key professional api key
      * @return boolean
      */
     public function isValidProffApiKey($api_key) {
@@ -891,38 +891,38 @@ class DbHandler {
         return md5(uniqid(rand(), true));
     }
 
-    /* ------------- `proffesionals` table method ------------------ */
+    /* ------------- `professionals` table method ------------------ */
 
     /**
      * Fetching proffessional details
-     * @param String $proff_id of the proffesional
+     * @param String $proff_id of the professional
      */
-    public function getProffesional($proff_id) {
+    public function getProfessional($proff_id) {
         $stmt = $this->conn->prepare("SELECT * FROM proffesionals WHERE proff_id = ?");
         $stmt->bind_param("i", $proff_id);
         if ($stmt->execute()) {
-            $proffesional = $stmt->get_result()->fetch_assoc();
+            $professional = $stmt->get_result()->fetch_assoc();
             $stmt->close();
-            return $proffesional;
+            return $professional;
         } else {
             return NULL;
         }
     }
     /**
-     * Fetching all proffesionals
-     * @param String $proff_id of the proffesional
+     * Fetching all professionals
+     * @param String $proff_id of the professional
      */
-    public function getAllproffesionals() {
+    public function getAllprofessionals() {
         $stmt = $this->conn->prepare("SELECT * FROM proffesionals");
         $stmt->execute();
-        $proffesionals = $stmt->get_result();
+        $professional = $stmt->get_result();
         $stmt->close();
-        return $proffesionals;
+        return $professional;
     }
 
     /**
-     * Updating proffesional
-     * @param String $proff_id id of the proffesional
+     * Updating professional
+     * @param String $proff_id id of the professional
      * @param String proff_name text
      * @param String $cell_no text
      * @param String $national_id text
@@ -931,7 +931,7 @@ class DbHandler {
      * @param String $first_name text
      * @param String $last_name text
      */
-    public function updateProffesional($proff_name, $cell_no, $national_id, $location, $image, $first_name, $last_name, $gender, $proff_id) {
+    public function updateProfessional($proff_name, $cell_no, $national_id, $location, $image, $first_name, $last_name, $gender, $proff_id) {
         $stmt = $this->conn->prepare("UPDATE proffesionals set proff_name = ?, cell_no = ?, national_id = ?, location = ?, image = ?, first_name = ?, last_name = ?, gender = ? WHERE proff_id = ?");
         $stmt->bind_param("ssssssssi", $proff_name, $cell_no, $national_id, $location, $image, $first_name, $last_name, $gender, $proff_id);
         $stmt->execute();
@@ -941,11 +941,11 @@ class DbHandler {
     }
 
     /**
-     * Deactivate proffesional account
-     * @param String $proff_id id of the proffesional
+     * Deactivate professional account
+     * @param String $proff_id id of the professional
      * @param String status number
      */
-    public function deactivate_activateProffesional($status, $proff_id) {
+    public function deactivate_activateProfessional($status, $proff_id) {
         $stmt = $this->conn->prepare("UPDATE proffesionals set status = ? WHERE proff_id = ?");
         $stmt->bind_param("si", $status, $proff_id);
         $stmt->execute();
@@ -955,11 +955,11 @@ class DbHandler {
     }
 
     /**
-     * Change proffesional availability
-     * @param String $proff_id id of the proffesional
+     * Change professional availability
+     * @param String $proff_id id of the professional
      * @param String availability_status number
      */
-    public function changeProffesionalAvailability($availability_status, $proff_id) {
+    public function changeProfessionalAvailability($availability_status, $proff_id) {
         $stmt = $this->conn->prepare("UPDATE proffesionals set availability_status = ? WHERE proff_id = ?");
         $stmt->bind_param("ii", $availability_status, $proff_id);
         $result = $stmt->execute();
@@ -969,20 +969,20 @@ class DbHandler {
         {
             // Check for successful insertion
             if ($result) {
-                // Proffesional status successfully inserted
+                // professional status successfully inserted
                 return USER_CREATED_SUCCESSFULLY;
             } else {
-                // Failed to create proffesional status
+                // Failed to create professional status
                 return USER_CREATE_FAILED;
             }
         }
     }
 
     /**
-     * Deleting a proffesional
-     * @param String $proff_id id of the proffesional to delete
+     * Deleting a professional
+     * @param String $proff_id id of the professional to delete
      */
-    public function deleteProffesional($proff_id) {
+    public function deleteProfessional($proff_id) {
         $stmt = $this->conn->prepare("DELETE FROM proffesionals WHERE proff_id = ?");
         $stmt->bind_param("i", $proff_id);
         $stmt->execute();
@@ -991,15 +991,15 @@ class DbHandler {
         return $num_affected_rows > 0;
     }
 
-    /** ------------- `proffesional_status` table method ------------------ */
+    /** ------------- `professional_status` table method ------------------ */
 
     /**
-     * Creating new proffesional status
-     * @param String $proff_id proffesional proff_id
+     * Creating new professional status
+     * @param String $proff_id professional proff_id
      */
-    public function createProffesionalStatus($proff_id) {
+    public function createProfessionalStatus($proff_id) {
 
-        // First check if proffesional already existed in db
+        // First check if professional already existed in db
         if (!$this->isProffExists($proff_id)) {
 
             // insert query
@@ -1012,14 +1012,14 @@ class DbHandler {
 
             // Check for successful insertion
             if ($result) {
-                // Proffesional status successfully inserted
+                // professional status successfully inserted
                 return USER_CREATED_SUCCESSFULLY;
             } else {
-                // Failed to create proffesional status
+                // Failed to create professional status
                 return USER_CREATE_FAILED;
             }
         } else {
-            // proffesional status with same $proff_id already existed in the db
+            // professional status with same $proff_id already existed in the db
             return USER_ALREADY_EXISTED;
         }
     }
@@ -1034,11 +1034,11 @@ class DbHandler {
     }
 
     /**
-     * Change proffesional text status
-     * @param String $proff_id id of the proffesional status
+     * Change professional text status
+     * @param String $proff_id id of the professional status
      * @param String profile text status
      */
-    public function changeProffesionalTextStatus($proff_text, $proff_id) {
+    public function changeProfessionalTextStatus($proff_text, $proff_id) {
         $stmt = $this->conn->prepare("UPDATE proffesional_status set proff_text = ? WHERE proff_id = ?");
         $stmt->bind_param("si", $proff_text, $proff_id);
         $result = $stmt->execute();
@@ -1048,21 +1048,21 @@ class DbHandler {
         {
             // Check for successful insertion
             if ($result) {
-                // Proffesional status successfully inserted
+                // professional status successfully inserted
                 return USER_CREATED_SUCCESSFULLY;
             } else {
-                // Failed to create proffesional status
+                // Failed to create professional status
                 return USER_CREATE_FAILED;
             }
         }
     }
 
     /**
-     * Change proffesional image status
-     * @param String $proff_id id of the proffesional status
+     * Change professional image status
+     * @param String $proff_id id of the professional status
      * @param String profile image status
      */
-    public function changeProffesionalImageStatus($proff_image, $proff_id) {
+    public function changeProfessionalImageStatus($proff_image, $proff_id) {
         $stmt = $this->conn->prepare("UPDATE proffesional_status set proff_image = ? WHERE proff_id = ?");
         $stmt->bind_param("si", $proff_image, $proff_id);
         $result = $stmt->execute();
@@ -1072,20 +1072,20 @@ class DbHandler {
         {
             // Check for successful insertion
             if ($result) {
-                // Proffesional status successfully inserted
+                // professional status successfully inserted
                 return USER_CREATED_SUCCESSFULLY;
             } else {
-                // Failed to create proffesional status
+                // Failed to create professional status
                 return USER_CREATE_FAILED;
             }
         }
     }
     /**
-     * Change proffesional video status
-     * @param String $proff_id id of the proffesional status
+     * Change professional video status
+     * @param String $proff_id id of the professional status
      * @param String profile video status
      */
-    public function changeProffesionalVideoStatus($proff_video, $proff_id) {
+    public function changeProfessionalVideoStatus($proff_video, $proff_id) {
         $stmt = $this->conn->prepare("UPDATE proffesional_status set proff_video = ? WHERE proff_id = ?");
         $stmt->bind_param("si", $proff_video, $proff_id);
         $result = $stmt->execute();
@@ -1095,20 +1095,20 @@ class DbHandler {
         {
             // Check for successful insertion
             if ($result) {
-                // Proffesional status successfully inserted
+                // professional status successfully inserted
                 return USER_CREATED_SUCCESSFULLY;
             } else {
-                // Failed to create proffesional status
+                // Failed to create professional status
                 return USER_CREATE_FAILED;
             }
         }
     }
 
     /**
-     * Creating new proffesional rating
-     * @param String $proff_id proffesional proff_id , rating
+     * Creating new professional rating
+     * @param String $proff_id professional proff_id , rating
      */
-    public function rateProffesional($client_id, $proff_id, $rating) {
+    public function rateProfessional($client_id, $proff_id, $rating) {
 
         // insert query
         $stmt = $this->conn->prepare("INSERT INTO proffessional_rating(client_id, proff_id, rating) values(?,?,?)");
@@ -1120,25 +1120,25 @@ class DbHandler {
 
         // Check for successful insertion
         if ($result) {
-            // Proffesional rating successfully inserted
+            // professional rating successfully inserted
             return USER_CREATED_SUCCESSFULLY;
         } else {
-            // Failed to create proffesional rating
+            // Failed to create professional rating
             return USER_CREATE_FAILED;
         }
     }
 
     /**
      * Fetching proffessional rating
-     * @param String $proff_id of the proffesional
+     * @param String $proff_id of the professional
      */
-    public function getProffesionalRating($proff_id) {
+    public function getProfessionalRating($proff_id) {
         $stmt = $this->conn->prepare("SELECT * FROM proffessional_rating WHERE proff_id = ?");
         $stmt->bind_param("i", $proff_id);
         if ($stmt->execute()) {
-            $proffesional = $stmt->get_result()->fetch_assoc();
+            $professional = $stmt->get_result()->fetch_assoc();
             $stmt->close();
-            return $proffesional;
+            return $professional;
         } else {
             return NULL;
         }
@@ -1146,15 +1146,15 @@ class DbHandler {
 
     /**
      * Fetching proffessional status
-     * @param String $proff_id of the proffesional
+     * @param String $proff_id of the professional
      */
-    public function getProffesionalStatus($proff_id) {
+    public function getProfessionalStatus($proff_id) {
         $stmt = $this->conn->prepare("SELECT * FROM proffesional_status WHERE proff_id = ?");
         $stmt->bind_param("i", $proff_id);
         if ($stmt->execute()) {
-            $proffesional = $stmt->get_result()->fetch_assoc();
+            $professional = $stmt->get_result()->fetch_assoc();
             $stmt->close();
-            return $proffesional;
+            return $professional;
         } else {
             return NULL;
         }

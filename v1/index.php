@@ -496,17 +496,17 @@ $app->delete('/clients/:id', 'authenticate', function($client_id) use($app) {
 
 
 /**
- * Listing single proffesional
+ * Listing single professional
  * method GET
- * url /proffesional/:id
- * Will return 404 if the proffesional doesn't exist
+ * url /professional/:id
+ * Will return 404 if the professional doesn't exist
  */
-$app->get('/proffesional/:id', 'authenticate', function($proff_id) {
+$app->get('/professional/:id', 'authenticate', function($proff_id) {
 //    global $proff_id;
     $response = array();
     $db = new DbHandler();
     // fetch task
-    $result = $db->getProffesional($proff_id);
+    $result = $db->getProfessional($proff_id);
     if ($result != NULL) {
         $response["error"] = false;
         $response['proff_id'] = $result['proff_id'];
@@ -1084,7 +1084,7 @@ $app->get('/payment_proff/:id', 'authenticated', function($proff_id) {
     // fetch single client
     $result = $db->getProff_Payment($proff_id);
     $response["error"] = false;
-    $response["message"] = "Proffesional payment record exist";
+    $response["message"] = "Professional payment record exist";
     $response['payments'] = array();
 
     if ($result != NULL) {
@@ -1101,7 +1101,7 @@ $app->get('/payment_proff/:id', 'authenticated', function($proff_id) {
         echoRespnse(200, $response);
     } else {
         $response["error"] = true;
-        $response["message"] = "Proffesional payment recored doesn't exist";
+        $response["message"] = "professional payment recored doesn't exist";
         echoRespnse(404, $response);
     }
 });
@@ -1143,7 +1143,7 @@ $app->get('/payment_client/:id', 'authenticated', function($client_id) {
 });
 
 /**
- * Listing all job_categories a proffesional has signed up for
+ * Listing all job_categories a professional has signed up for
  * method GET
  * url /proffs_jobcategories/:id
  */
@@ -1155,7 +1155,7 @@ $app->get('/proff_jobcategories/:id', 'authenticated', function($proff_id) {
     // fetching all job_categories for a proff
     $result = $db->getClient_JobCategories($proff_id);
     $response["error"] = false;
-    $response["message"] = "Proffesional job categories exist";
+    $response["message"] = "Professional job categories exist";
     $response["job_categories"] = array();
     if ($result != NULL)
     {
@@ -1179,7 +1179,7 @@ $app->get('/proff_jobcategories/:id', 'authenticated', function($proff_id) {
     else
     {
         $response["error"] = true;
-        $response["message"] = "Proffesional job categories do not exist";
+        $response["message"] = "Professional job categories do not exist";
         echoRespnse(404, $response);
     }
 
@@ -1260,12 +1260,12 @@ function authenticated(\Slim\Route $route) {
  * Proffessional end points
  */
 /**
- * proffesional Registration
+ * professional Registration
  * url - /register
  * method - POST
  * params - name, email, password
  */
-$app->post('/proffesional_register', function() use ($app) {
+$app->post('/professional_register', function() use ($app) {
     // check for required params
     verifyRequiredParams(array('first_name', 'last_name', 'email', 'password'));
 
@@ -1281,7 +1281,7 @@ $app->post('/proffesional_register', function() use ($app) {
     validateEmail($email);
 
     $db = new DbHandler();
-    $res = $db->createProffesional($first_name, $last_name, $email, $password);
+    $res = $db->createProfessional($first_name, $last_name, $email, $password);
 
     if ($res == USER_CREATED_SUCCESSFULLY) {
         $response["error"] = false;
@@ -1299,12 +1299,12 @@ $app->post('/proffesional_register', function() use ($app) {
 });
 
 /**
- * proffesional Login
+ * professional Login
  * url - /login
  * method - POST
  * params - email, password
  */
-$app->post('/proffesional_login', function() use ($app) {
+$app->post('/professional_login', function() use ($app) {
     // check for required params
     verifyRequiredParams(array('email', 'password'));
 
@@ -1317,15 +1317,15 @@ $app->post('/proffesional_login', function() use ($app) {
     // check for correct email and password
     if ($db->checkProffLogin($email, $password)) {
         // get the user by email
-        $proffesional = $db->getUserByEmail($email);
-        if ($proffesional != NULL) {
+        $professional = $db->getUserByEmail($email);
+        if ($professional != NULL) {
 
-            $proff_id = $proffesional['proff_id'];
+            $proff_id = $professional['proff_id'];
             $response['error'] = false;
             $response['message'] = 'Login successful';
             $response['professional'] = $db->getUserByEmail($email);
 
-            $db->createProffesionalStatus($proff_id);
+            $db->createProfessionalStatus($proff_id);
         } else {
             // unknown error occurred
             $response['error'] = true;
@@ -1346,70 +1346,70 @@ $app->post('/proffesional_login', function() use ($app) {
  */
 
 /**
- * Listing all proffesionals
+ * Listing all professionals
  * method GET
- * url /proffesionals
+ * url /professionals
  */
-$app->get('/proffesionals', 'authenticated', function() {
+$app->get('/professionals', 'authenticated', function() {
 
     $response = array();
     $db = new DbHandler();
 
-    // fetching all proffesionals
-    $result = $db->getAllproffesionals();
+    // fetching all professionals
+    $result = $db->getAllprofessionals();
     if ($result != NULL)
     {
         $response["error"] = false;
-        $response["message"] = "Proffesionals exist.";
-        $response["proffesionals"] = array();
+        $response["message"] = "Professionals exist.";
+        $response["professionals"] = array();
 
-        // looping through result and preparing proffesionals array
-        while ($proffesional = $result->fetch_assoc()) {
+        // looping through result and preparing professionals array
+        while ($professional = $result->fetch_assoc()) {
             $tmp = array();
-            $tmp['proff_id'] = $proffesional['proff_id'];
-            $tmp['proff_name'] = $proffesional['proff_name'];
-            $tmp['email'] = $proffesional['email'];
-            $tmp['cell_no'] = $proffesional['cell_no'];
-            $tmp['national_id'] = $proffesional['national_id'];
-            $tmp['location'] = $proffesional['location'];
-            $tmp['availability_status'] = $proffesional['availability_status'];
-            $tmp['image'] = $proffesional['image'];
-            $tmp['first_name'] = $proffesional['first_name'];
-            $tmp['last_name'] = $proffesional['last_name'];
-            $tmp['api_key'] = $proffesional['api_key'];
-            $tmp['gender'] = $proffesional['gender'];
-            $tmp['status'] = $proffesional['status'];
-            $tmp['created_at'] = $proffesional['created_at'];
-            array_push($response["proffesionals"], $tmp);
+            $tmp['proff_id'] = $professional['proff_id'];
+            $tmp['proff_name'] = $professional['proff_name'];
+            $tmp['email'] = $professional['email'];
+            $tmp['cell_no'] = $professional['cell_no'];
+            $tmp['national_id'] = $professional['national_id'];
+            $tmp['location'] = $professional['location'];
+            $tmp['availability_status'] = $professional['availability_status'];
+            $tmp['image'] = $professional['image'];
+            $tmp['first_name'] = $professional['first_name'];
+            $tmp['last_name'] = $professional['last_name'];
+            $tmp['api_key'] = $professional['api_key'];
+            $tmp['gender'] = $professional['gender'];
+            $tmp['status'] = $professional['status'];
+            $tmp['created_at'] = $professional['created_at'];
+            array_push($response["professionals"], $tmp);
         }
         echoRespnse(200, $response);
     }
     else
     {
         $response["error"] = true;
-        $response["message"] = "Proffesionals do not exist.";
+        $response["message"] = "Professionals do not exist.";
         echoRespnse(404, $response);
     }
     
 });
 
 /**
- * Listing single proffesional
+ * Listing single professional
  * method GET
- * url /proffesional/:id
- * Will return 404 if the proffesional doesn't exist
+ * url /professional/:id
+ * Will return 404 if the professional doesn't exist
  */
-$app->get('/proffesionals/:id', 'authenticated', function($proff_id) {
+$app->get('/professionals/:id', 'authenticated', function($proff_id) {
 //    global $proff_id;
     $response = array();
     $db = new DbHandler();
 
-    // fetch proffesional
-    $result = $db->getProffesional($proff_id);
+    // fetch professional
+    $result = $db->getProfessional($proff_id);
     if ($result != NULL) {
         $response["error"] = false;
-        $response["message"] = "Proffesional exist.";
-        $response["proffesional"] = array();
+        $response["message"] = "Professional exist.";
+        $response["professional"] = array();
         $tmp = array();
 
         $tmp['proff_id'] = $result['proff_id'];
@@ -1427,22 +1427,22 @@ $app->get('/proffesionals/:id', 'authenticated', function($proff_id) {
         $tmp['status'] = $result['status'];
         $tmp['created_at'] = $result['created_at'];
 
-        array_push($response["proffesional"], $tmp);
+        array_push($response["professional"], $tmp);
         echoRespnse(200, $response);
     } else {
         $response["error"] = true;
-        $response["message"] = "Proffesional doesn't exist";
+        $response["message"] = "Professional doesn't exist";
         echoRespnse(404, $response);
     }
 });
 
 /**
- * Updating existing proffesional
+ * Updating existing professional
  * method PUT
  * params proff_name, cell_no, national_id, location, image, first_name, last_name, gender
- * url - /proffesionals/:id
+ * url - /professionals/:id
  */
-$app->put('/proffesionals/:id', 'authenticated', function($proff_id) use($app) {
+$app->put('/professionals/:id', 'authenticated', function($proff_id) use($app) {
     // check for required params
     verifyRequiredParams(array('proff_name', 'cell_no', 'national_id', 'location', 'image', 'first_name', 'last_name', 'gender'));
 
@@ -1458,8 +1458,8 @@ $app->put('/proffesionals/:id', 'authenticated', function($proff_id) use($app) {
     $db = new DbHandler();
     $response = array();
 
-    // updating proffesional details
-    $result = $db->updateProffesional($proff_name, $cell_no, $national_id, $location, $image, $first_name, $last_name, $gender, $proff_id);
+    // updating professional details
+    $result = $db->updateProfessional($proff_name, $cell_no, $national_id, $location, $image, $first_name, $last_name, $gender, $proff_id);
     if ($result) {
         // personal details updated successfully
         $response["error"] = false;
@@ -1473,12 +1473,12 @@ $app->put('/proffesionals/:id', 'authenticated', function($proff_id) use($app) {
 });
 
 /**
- * Updating existing proffesional
+ * Updating existing professional
  * method PUT
  * params password
- * url - /change_proffesionals_password/:id
+ * url - /change_professionals_password/:id
  */
-$app->put('/change_proffesionals_password/:id', 'authenticated', function($proff_id) use($app) {
+$app->put('/change_professionals_password/:id', 'authenticated', function($proff_id) use($app) {
     // check for required params
     verifyRequiredParams(array('password'));
 
@@ -1488,7 +1488,7 @@ $app->put('/change_proffesionals_password/:id', 'authenticated', function($proff
     $password = $app->request->post('password');
 
     $db = new DbHandler();
-    $res = $db->changeProffesionalPassword($password, $proff_id);
+    $res = $db->changeProfessionalPassword($password, $proff_id);
 
     if ($res == USER_CREATED_SUCCESSFULLY) {
         $response["error"] = false;
@@ -1503,12 +1503,12 @@ $app->put('/change_proffesionals_password/:id', 'authenticated', function($proff
 });
 
 /**
- * Updating existing proffesional availability
+ * Updating existing professional availability
  * method PUT
  * params availability_status
- * url - /change_proffesionals_availability/:id
+ * url - /change_professionals_availability/:id
  */
-$app->put('/change_proffesionals_availability/:id', 'authenticated', function($proff_id) use($app) {
+$app->put('/change_professionals_availability/:id', 'authenticated', function($proff_id) use($app) {
     // check for required params
     verifyRequiredParams(array('availability_status'));
 
@@ -1518,7 +1518,7 @@ $app->put('/change_proffesionals_availability/:id', 'authenticated', function($p
     $availability_status = $app->request->post('availability_status');
 
     $db = new DbHandler();
-    $res = $db->changeProffesionalAvailability($availability_status, $proff_id);
+    $res = $db->changeprofessionalAvailability($availability_status, $proff_id);
 
     if ($res == USER_CREATED_SUCCESSFULLY) {
         $response["error"] = false;
@@ -1533,12 +1533,12 @@ $app->put('/change_proffesionals_availability/:id', 'authenticated', function($p
 });
 
 /**
- * Deactivate existing proffesional
+ * Deactivate existing professional
  * method PUT
  * params status
- * url - /deactivate_proffesionals/:id
+ * url - /deactivate_professionals/:id
  */
-$app->put('/deactivate_proffesionals/:id', 'authenticated', function($proff_id) use($app) {
+$app->put('/deactivate_professionals/:id', 'authenticated', function($proff_id) use($app) {
     // check for required params
     verifyRequiredParams(array('status'));
 
@@ -1547,8 +1547,8 @@ $app->put('/deactivate_proffesionals/:id', 'authenticated', function($proff_id) 
     $db = new DbHandler();
     $response = array();
 
-    // updating proffesional details
-    $result = $db->deactivate_activateProffesional($status, $proff_id);
+    // updating professional details
+    $result = $db->deactivate_activateProfessional($status, $proff_id);
     if ($result) {
         // personal details updated successfully
         $response["error"] = false;
@@ -1562,12 +1562,12 @@ $app->put('/deactivate_proffesionals/:id', 'authenticated', function($proff_id) 
 });
 
 /**
- * Activate existing proffesional
+ * Activate existing professional
  * method PUT
  * params status
- * url - /activate_proffesionals/:id
+ * url - /activate_professionals/:id
  */
-$app->put('/activate_proffesionals/:id', 'authenticated', function($proff_id) use($app) {
+$app->put('/activate_professionals/:id', 'authenticated', function($proff_id) use($app) {
     // check for required params
     verifyRequiredParams(array('status'));
 
@@ -1576,8 +1576,8 @@ $app->put('/activate_proffesionals/:id', 'authenticated', function($proff_id) us
     $db = new DbHandler();
     $response = array();
 
-    // updating proffesional details
-    $result = $db->deactivate_activateProffesional($status, $proff_id);
+    // updating professional details
+    $result = $db->deactivate_activateProfessional($status, $proff_id);
     if ($result) {
         // personal details updated successfully
         $response["error"] = false;
@@ -1591,7 +1591,7 @@ $app->put('/activate_proffesionals/:id', 'authenticated', function($proff_id) us
 });
 
 /**
- * Updating existing proffesional status
+ * Updating existing professional status
  * method PUT
  * params proff_text
  * url - /profile_text/:id
@@ -1606,7 +1606,7 @@ $app->put('/profile_text/:id', 'authenticated', function($proff_id) use($app) {
     $proff_text = $app->request->post('proff_text');
 
     $db = new DbHandler();
-    $res = $db->changeProffesionalTextStatus($proff_text, $proff_id);
+    $res = $db->changeProfessionalTextStatus($proff_text, $proff_id);
 
     if ($res == USER_CREATED_SUCCESSFULLY) {
         $response["error"] = false;
@@ -1621,7 +1621,7 @@ $app->put('/profile_text/:id', 'authenticated', function($proff_id) use($app) {
 });
 
 /**
- * Updating existing proffesional status
+ * Updating existing professional status
  * method PUT
  * params proff_image
  * url - /profile_image/:id
@@ -1636,7 +1636,7 @@ $app->put('/profile_image/:id', 'authenticated', function($proff_id) use($app) {
     $proff_image = $app->request->post('proff_image');
 
     $db = new DbHandler();
-    $res = $db->changeProffesionalImageStatus($proff_image, $proff_id);
+    $res = $db->changeProfessionalImageStatus($proff_image, $proff_id);
 
     if ($res == USER_CREATED_SUCCESSFULLY) {
         $response["error"] = false;
@@ -1651,7 +1651,7 @@ $app->put('/profile_image/:id', 'authenticated', function($proff_id) use($app) {
 });
 
 /**
- * Updating existing proffesional status
+ * Updating existing professional status
  * method PUT
  * params proff_video
  * url - /proff_video/:id
@@ -1666,7 +1666,7 @@ $app->put('/profile_video/:id', 'authenticated', function($proff_id) use($app) {
     $proff_video = $app->request->post('proff_video');
 
     $db = new DbHandler();
-    $res = $db->changeProffesionalVideoStatus($proff_video, $proff_id);
+    $res = $db->changeProfessionalVideoStatus($proff_video, $proff_id);
 
     if ($res == USER_CREATED_SUCCESSFULLY) {
         $response["error"] = false;
@@ -1681,65 +1681,65 @@ $app->put('/profile_video/:id', 'authenticated', function($proff_id) use($app) {
 });
 
 /**
- * Deleting proffesional. proffesional can delete only their profile
+ * Deleting professional. professional can delete only their profile
  * method DELETE
- * url /proffesionals
+ * url /professionals
  */
-$app->delete('/proffesionals/:id', 'authenticated', function($proff_id) use($app) {
+$app->delete('/professionals/:id', 'authenticated', function($proff_id) use($app) {
 
     $db = new DbHandler();
     $response = array();
-    $result = $db->deleteProffesional($proff_id);
+    $result = $db->deleteProfessional($proff_id);
     if ($result) {
-        // proffesional deleted successfully
+        // professional deleted successfully
         $response["error"] = false;
-        $response["message"] = "Proffesional account deleted succesfully";
+        $response["message"] = "Professional account deleted succesfully";
     } else {
-        // proffesional failed to delete
+        // professional failed to delete
         $response["error"] = true;
-        $response["message"] = "Proffesional account failed to delete. Please try again!";
+        $response["message"] = "Professional account failed to delete. Please try again!";
     }
     echoRespnse(200, $response);
 });
 
 /**
- * Proffesional rating. clients can rate the proffesional after work
+ * professional rating. clients can rate the professional after work
  * method POST
- * url /proffesional_rating/:id
+ * url /professional_rating/:id
  */
-$app->post('/proffesional_rating/:id', 'authenticated', function($proff_id) use($app) {
+$app->post('/professional_rating/:id', 'authenticated', function($proff_id) use($app) {
 
     $client_id = $app->request->put('client_id');
     $rating = $app->request->put('rating');
 
     $db = new DbHandler();
     $response = array();
-    $result = $db->rateProffesional($client_id, $proff_id, $rating);
+    $result = $db->rateProfessional($client_id, $proff_id, $rating);
     if ($result) {
-        // proffesional deleted successfully
+        // professional deleted successfully
         $response["error"] = false;
-        $response["message"] = "Proffesional rating succesfully";
+        $response["message"] = "Professional rating succesfully";
     } else {
-        // proffesional failed to delete
+        // professional failed to delete
         $response["error"] = true;
-        $response["message"] = "Proffesional rating failed. Please try again!";
+        $response["message"] = "Professional rating failed. Please try again!";
     }
     echoRespnse(200, $response);
 });
 
 /**
- * Listing single proffesional ratings
+ * Listing single professional ratings
  * method GET
- * url /proffesional_status/:id
- * Will return 404 if the proffesional rating doesn't exist
+ * url /professional_status/:id
+ * Will return 404 if the professional rating doesn't exist
  */
-$app->get('/proffesional_rating/:id', 'authenticated', function($proff_id) {
+$app->get('/professional_rating/:id', 'authenticated', function($proff_id) {
 //    global $proff_id;
     $response = array();
     $db = new DbHandler();
 
-    // fetch proffesional
-    $result = $db->getProffesionalRating($proff_id);
+    // fetch professional
+    $result = $db->getProfessionalRating($proff_id);
 
     if ($result != NULL) {
         $response["error"] = false;
@@ -1755,18 +1755,18 @@ $app->get('/proffesional_rating/:id', 'authenticated', function($proff_id) {
 });
 
 /**
- * Listing single proffesional status
+ * Listing single professional status
  * method GET
- * url /proffesional_status/:id
- * Will return 404 if the proffesional status doesn't exist
+ * url /professional_status/:id
+ * Will return 404 if the professional status doesn't exist
  */
-$app->get('/proffesional_status/:id', 'authenticated', function($proff_id) {
+$app->get('/professional_status/:id', 'authenticated', function($proff_id) {
 //    global $proff_id;
     $response = array();
     $db = new DbHandler();
 
-    // fetch proffesional
-    $result = $db->getProffesionalStatus($proff_id);
+    // fetch professional
+    $result = $db->getProfessionalStatus($proff_id);
 
     if ($result != NULL) {
         $response["error"] = false;
@@ -1782,7 +1782,7 @@ $app->get('/proffesional_status/:id', 'authenticated', function($proff_id) {
     }
 });
 
-// End of the proffesional endpoints
+// End of the professional endpoints
 
 $app->run();
 ?>
