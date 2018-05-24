@@ -214,17 +214,17 @@ $app->post('/login', function() use ($app) {
 
                 if ($user != NULL) {
                     $response["error"] = false;
-                    $response["client_id"] = $result["client_id"];
-                    $response["client_name"] = $result["client_name"];
-                    $response["first_name"] = $result["first_name"];
-                    $response["last_name"] = $result["last_name"];
-                    $response["cell_no"] = $result["cell_no"];
-                    $response["location"] = $result["location"];
-                    $response["image"] = $result["image"];
-                    $response["email"] = $result["email"];
-                    $response["status"] = $result["status"];
-                    $response['api_key'] = $result['api_key'];
-                    $response["createdAt"] = $result["created_at"];
+                    $response["client_id"] = $user["client_id"];
+                    $response["client_name"] = $user["client_name"];
+                    $response["first_name"] = $user["first_name"];
+                    $response["last_name"] = $user["last_name"];
+                    $response["cell_no"] = $user["cell_no"];
+                    $response["location"] = $user["location"];
+                    $response["image"] = $user["image"];
+                    $response["email"] = $user["email"];
+                    $response["status"] = $user["status"];
+                    $response['api_key'] = $user['api_key'];
+                    $response["createdAt"] = $user["created_at"];
                 } else {
                     // unknown error occurred
                     $response['error'] = true;
