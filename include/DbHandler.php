@@ -234,9 +234,10 @@ class DbHandler {
         $stmt->bind_param("s", $email);
         if ($stmt->execute()) {
             // $user = $stmt->get_result()->fetch_assoc();
-            $stmt->bind_result( $client_name, $first_name, $last_name, $email, $api_key, $status, $location, $cell_no, $image, $created_at);
+            $stmt->bind_result( $client_id, $client_name, $first_name, $last_name, $email, $api_key, $status, $location, $cell_no, $image, $created_at);
             $stmt->fetch();
             $user = array();
+            $user["client_id"] = $client_name;
             $user["client_name"] = $client_name;
             $user["first_name"] = $first_name;
             $user["last_name"] = $last_name;
