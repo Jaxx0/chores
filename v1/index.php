@@ -325,7 +325,7 @@ $app->get('/client/:id', 'authenticate', function($client_id) {
  */
 $app->put('/client/:id', 'authenticate', function($client_id) use($app) {
             // check for required params
-            verifyRequiredParams(array('client_name', 'first_name', 'last_name', 'cell_no', 'location', 'image', 'status'));
+//            verifyRequiredParams(array('client_name', 'first_name', 'last_name', 'cell_no', 'location', 'image', 'status'));
 
         //    global $client_id;
             $client_name = $app->request->put('client_name');
