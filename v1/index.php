@@ -50,6 +50,43 @@ function authenticate(\Slim\Route $route) {
 }
 
 /**
+ * Adding Middle Layer to authenticate every request
+ * Checking if the request has valid api key in the 'Authorization' header
+ */
+function authenticated(\Slim\Route $route) {
+    // Getting request headers
+    $headers = apache_request_headers();
+    $response = array();
+    $app = \Slim\Slim::getInstance();
+
+    // Verifying Authorization Header
+    if (isset($headers['Authorization'])) {
+        $db = new DbHandler();
+
+        // get the api key
+        $api_key = $headers['Authorization'];
+        // validating api key
+        if (!$db->isValidProffApiKey($api_key)) {
+            // api key is not present in users table
+            $response["error"] = true;
+            $response["message"] = "Access Denied. Invalid Api key";
+            echoRespnse(401, $response);
+            $app->stop();
+        } else {
+            global $proff_id;
+            // get user primary key id
+            $proff_id = $db->getProffId($api_key);
+        }
+    } else {
+        // api key is missing in header
+        $response["error"] = true;
+        $response["message"] = "Api key is misssing";
+        echoRespnse(400, $response);
+        $app->stop();
+    }
+}
+
+/**
  * Verifying required params posted or not
  */
 function verifyRequiredParams($required_fields) {
@@ -397,7 +434,7 @@ $app->post('/professional_login', function() use ($app) {
  * method GET
  * url /professionals
  */
-$app->get('/professionals', 'authenticate', function() {
+$app->get('/professionals', 'authenticated', function() {
 
     $response = array();
     $db = new DbHandler();
@@ -446,7 +483,7 @@ $app->get('/professionals', 'authenticate', function() {
  * url /professional/:id
  * Will return 404 if the professional doesn't exist
  */
-$app->get('/professionals/:id', 'authenticate', function($proff_id) {
+$app->get('/professionals/:id', 'authenticated', function($proff_id) {
 //    global $proff_id;
     $response = array();
     $db = new DbHandler();
@@ -489,7 +526,7 @@ $app->get('/professionals/:id', 'authenticate', function($proff_id) {
  * params proff_name, cell_no, national_id, location, image, first_name, last_name, gender
  * url - /professionals/:id
  */
-$app->put('/professionals/:id', 'authenticate', function($proff_id) use($app) {
+$app->put('/professionals/:id', 'authenticated', function($proff_id) use($app) {
     // check for required params
     verifyRequiredParams(array('proff_name', 'cell_no', 'national_id', 'location', 'image', 'first_name', 'last_name', 'gender'));
 
@@ -525,7 +562,7 @@ $app->put('/professionals/:id', 'authenticate', function($proff_id) use($app) {
  * params password
  * url - /change_professionals_password/:id
  */
-$app->put('/change_professionals_password/:id', 'authenticate', function($proff_id) use($app) {
+$app->put('/change_professionals_password/:id', 'authenticated', function($proff_id) use($app) {
     // check for required params
     verifyRequiredParams(array('password'));
 
@@ -555,7 +592,7 @@ $app->put('/change_professionals_password/:id', 'authenticate', function($proff_
  * params availability_status
  * url - /change_professionals_availability/:id
  */
-$app->put('/change_professionals_availability/:id', 'authenticate', function($proff_id) use($app) {
+$app->put('/change_professionals_availability/:id', 'authenticated', function($proff_id) use($app) {
     // check for required params
     verifyRequiredParams(array('availability_status'));
 
@@ -585,7 +622,7 @@ $app->put('/change_professionals_availability/:id', 'authenticate', function($pr
  * params status
  * url - /deactivate_professionals/:id
  */
-$app->put('/deactivate_professionals/:id', 'authenticate', function($proff_id) use($app) {
+$app->put('/deactivate_professionals/:id', 'authenticated', function($proff_id) use($app) {
     // check for required params
     verifyRequiredParams(array('status'));
 
@@ -614,7 +651,7 @@ $app->put('/deactivate_professionals/:id', 'authenticate', function($proff_id) u
  * params status
  * url - /activate_professionals/:id
  */
-$app->put('/activate_professionals/:id', 'authenticate', function($proff_id) use($app) {
+$app->put('/activate_professionals/:id', 'authenticated', function($proff_id) use($app) {
     // check for required params
     verifyRequiredParams(array('status'));
 
@@ -643,7 +680,7 @@ $app->put('/activate_professionals/:id', 'authenticate', function($proff_id) use
  * params proff_text
  * url - /profile_text/:id
  */
-$app->put('/profile_text/:id', 'authenticate', function($proff_id) use($app) {
+$app->put('/profile_text/:id', 'authenticated', function($proff_id) use($app) {
     // check for required params
     verifyRequiredParams(array('proff_text'));
 
@@ -673,7 +710,7 @@ $app->put('/profile_text/:id', 'authenticate', function($proff_id) use($app) {
  * params proff_image
  * url - /profile_image/:id
  */
-$app->put('/profile_image/:id', 'authenticate', function($proff_id) use($app) {
+$app->put('/profile_image/:id', 'authenticated', function($proff_id) use($app) {
     // check for required params
     verifyRequiredParams(array('proff_image'));
 
@@ -703,7 +740,7 @@ $app->put('/profile_image/:id', 'authenticate', function($proff_id) use($app) {
  * params proff_video
  * url - /proff_video/:id
  */
-$app->put('/profile_video/:id', 'authenticate', function($proff_id) use($app) {
+$app->put('/profile_video/:id', 'authenticated', function($proff_id) use($app) {
     // check for required params
     verifyRequiredParams(array('proff_video'));
 
@@ -732,7 +769,7 @@ $app->put('/profile_video/:id', 'authenticate', function($proff_id) use($app) {
  * method DELETE
  * url /professionals
  */
-$app->delete('/professionals/:id', 'authenticate', function($proff_id) use($app) {
+$app->delete('/professionals/:id', 'authenticated', function($proff_id) use($app) {
 
     $db = new DbHandler();
     $response = array();
@@ -754,7 +791,7 @@ $app->delete('/professionals/:id', 'authenticate', function($proff_id) use($app)
  * method POST
  * url /professional_rating/:id
  */
-$app->post('/professional_rating/:id', 'authenticate', function($proff_id) use($app) {
+$app->post('/professional_rating/:id', 'authenticated', function($proff_id) use($app) {
 
     $client_id = $app->request->put('client_id');
     $rating = $app->request->put('rating');
@@ -780,7 +817,7 @@ $app->post('/professional_rating/:id', 'authenticate', function($proff_id) use($
  * url /professional_status/:id
  * Will return 404 if the professional rating doesn't exist
  */
-$app->get('/professional_rating/:id', 'authenticate', function($proff_id) {
+$app->get('/professional_rating/:id', 'authenticated', function($proff_id) {
 //    global $proff_id;
     $response = array();
     $db = new DbHandler();
@@ -807,7 +844,7 @@ $app->get('/professional_rating/:id', 'authenticate', function($proff_id) {
  * url /professional_status/:id
  * Will return 404 if the professional status doesn't exist
  */
-$app->get('/professional_status/:id', 'authenticate', function($proff_id) {
+$app->get('/professional_status/:id', 'authenticated', function($proff_id) {
 //    global $proff_id;
     $response = array();
     $db = new DbHandler();
@@ -1242,7 +1279,7 @@ $app->get('/professional/:id', 'authenticate', function($proff_id) {
  * url /job_posts
  * Will return 404 if the task doesn't belongs to user
  */
-$app->get('/job_posts', 'authenticate', function() {
+$app->get('/job_posts', 'authenticated', function() {
     $response = array();
     $db = new DbHandler();
 
@@ -1285,7 +1322,7 @@ $app->get('/job_posts', 'authenticate', function() {
  * method GET
  * url /clients
  */
-$app->get('/clients_rating', 'authenticate', function () {
+$app->get('/clients_rating', 'authenticated', function () {
     $response = array();
     $db = new DbHandler();
 
@@ -1408,7 +1445,7 @@ $app->post('/create_client_rating', function() use ($app) {
  * method GET
  * url/job_post/:id
  */
-$app->get('/job_post/:id', 'authenticate', function($client_id) {
+$app->get('/job_post/:id', 'authenticated', function($client_id) {
 //            global $client_id;
     $response = array();
     $db = new DbHandler();
@@ -1446,7 +1483,7 @@ $app->get('/job_post/:id', 'authenticate', function($client_id) {
  * method GET
  * url /categories
  */
-$app->get('/categories', 'authenticate', function () {
+$app->get('/categories', 'authenticated', function () {
     $response = array();
     $db = new DbHandler();
 
@@ -1477,7 +1514,7 @@ $app->get('/categories', 'authenticate', function () {
  * method GET
  * url /job_categories
  */
-$app->get('/job_categories', 'authenticate', function () {
+$app->get('/job_categories', 'authenticated', function () {
     $response = array();
     $db = new DbHandler();
 
@@ -1515,7 +1552,7 @@ $app->get('/job_categories', 'authenticate', function () {
  * method GET
  * url /job_category/:id
  */
-$app->get('/job_category/:id', 'authenticate', function($proff_id) {
+$app->get('/job_category/:id', 'authenticated', function($proff_id) {
 //    global $proff_id;
     $response = array();
     $db = new DbHandler();
@@ -1549,7 +1586,7 @@ $app->get('/job_category/:id', 'authenticate', function($proff_id) {
  * method GET
  * url /job_category/:id
  */
-$app->get('/jobs_description', 'authenticate', function () {
+$app->get('/jobs_description', 'authenticated', function () {
     $response = array();
     $db = new DbHandler();
 
@@ -1588,7 +1625,7 @@ $app->get('/jobs_description', 'authenticate', function () {
  * method GET
  * url /job_description/:id
  */
-$app->get('/job_description/:id', 'authenticate', function($job_post_id) {
+$app->get('/job_description/:id', 'authenticated', function($job_post_id) {
 //    global $proff_id;
     $response = array();
     $db = new DbHandler();
@@ -1621,7 +1658,7 @@ $app->get('/job_description/:id', 'authenticate', function($job_post_id) {
  * method GET
  * url /payments
  */
-$app->get('/payments', 'authenticate', function () {
+$app->get('/payments', 'authenticated', function () {
     $response = array();
     $db = new DbHandler();
 
@@ -1662,7 +1699,7 @@ $app->get('/payments', 'authenticate', function () {
  * url /payment_[roff/:id
  */
 
-$app->get('/payment_proff/:id', 'authenticate', function($proff_id) {
+$app->get('/payment_proff/:id', 'authenticated', function($proff_id) {
 //    global $proff_id;
     $response = array();
     $db = new DbHandler();
@@ -1698,7 +1735,7 @@ $app->get('/payment_proff/:id', 'authenticate', function($proff_id) {
  * url /payment_client:id
  */
 
-$app->get('/payment_client/:id', 'authenticate', function($client_id) {
+$app->get('/payment_client/:id', 'authenticated', function($client_id) {
 //    global $proff_id;
     $response = array();
     $db = new DbHandler();
@@ -1733,7 +1770,7 @@ $app->get('/payment_client/:id', 'authenticate', function($client_id) {
  * method GET
  * url /proffs_jobcategories/:id
  */
-$app->get('/proff_jobcategories/:id', 'authenticate', function($proff_id) {
+$app->get('/proff_jobcategories/:id', 'authenticated', function($proff_id) {
 //    global $client_id;
     $response = array();
     $db = new DbHandler();
