@@ -220,17 +220,8 @@ class DbHandler {
      * @param String $email Client email id
      */
     public function getClientByEmail($email) {
-//        $stmt = $this->conn->prepare("SELECT * FROM clients WHERE email = ?");
-//        $stmt->bind_param("i", $email);
-//        if ($stmt->execute()) {
-//            $client = $stmt->get_result()->fetch_assoc();
-//            $stmt->close();
-//            return $client;
-//        } else {
-//            return NULL;
-//        }
 
-        $stmt = $this->conn->prepare("SELECT client_name, first_name, last_name, email, api_key, status, location, cell_no, image, created_at FROM clients WHERE email = ?");
+        $stmt = $this->conn->prepare("SELECT client_id, client_name, first_name, last_name, email, api_key, status, location, cell_no, image, created_at FROM clients WHERE email = ?");
         $stmt->bind_param("s", $email);
         if ($stmt->execute()) {
             // $user = $stmt->get_result()->fetch_assoc();
