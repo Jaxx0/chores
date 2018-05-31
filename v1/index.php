@@ -1301,7 +1301,7 @@ $app->get('/job_posts', 'authenticated', function() {
             $tmp['contact_cell_no'] = $jobs['contact_cell_no'];
             $tmp['job_date'] = $jobs['job_date'];
             $tmp['job_time'] = $jobs['job_time'];
-            $tmp['job category'] = $jobs['job category'];
+            $tmp['job_category'] = $jobs['job_category'];
             $tmp['proff_id'] = $jobs['proff_id'];
             $tmp['created_at'] = $jobs['created_at'];
             array_push($response["job_posts"], $tmp);
